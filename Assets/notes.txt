@@ -1,4 +1,64 @@
-Eu ia escrever o sistema de combate neste projeto do git, mas escolhi esperar o Denilo ;)
-- Adonai
+provavelmente um FiniteStateMachine pode ajudar a controlar os estados do combate.
+Controle de turno e as etapas.
 
-><--TEXTO ALTERADO--><
+talvez um BehaviorTree seja necessário para o controle do inimigo em combate, mas isso aumenta muito
+a complexidade. (pra mim que não tenho pratica com behavior/"AI")
+
+ScriptableObjects para as diferentes partes, o objetivo é facilitar montar uma parte do zero sem código.
+
+
+-------------
+
+Meu objetivo é oferecer uma estrutura basica para viabilizar um combate em turnos
+
+------------
+1º garantir as trocas de turno e tal. 
+
+2º usar apenas uma unica opção que seria atacar. 
+(facilitar o controle dos estados por hora)
+
+3º implementar uma a uma das mecânicas basicas, como Pontos de ação, Alvo...
+
+4º após o basico do combate x1 estiver feito, separar o player em diferentes
+membros(auras) com suas ações próprias (por hora será tudo hardcoded)
+
+5º implementar cooldown, dano residual e efeitos que não acontecem no mesmo turno do jogador.
+
+6º preparar os scriptable objects das partes para que o denilo possa escrever com 
+facilidade os designs de partes.
+
+------------
+
+fazer uma implementação hardcoded antes de um Command pattern
+Command pattern vai servir para encapsular AI Behavior e ações em 1 comando. 
+Exemplo: Comando_Atacar_barço_equerdo, esse comando resolve tudo, desde animação, som a lógica.
+Para gerenciar e aplicar diferentes habilidades, power-ups ou efeitos durante o jogo.
+
+-----------
+
+Fazer:
+1º
+>Criar um character de batalha com DATA de HP e nome (por enquanto) >OK<
+
+>Ataque funcionar  >OK<
+>Cura funcionar
+>Encerrar turno Funcionar  >OK<
+(tirar HP e curar HP)
+
+
+2º
+>criar turno automatico do inimigo
+>usando as mesma possibilidades de comando
+
+3º
+>Fazer atk e cura gastar PA
+4º
+>Criar auras para escolher na ação de batalha
+>Auras configuráveis por Scriptable Objects
+>>
+
+
+
+>Fazer um atk com status??
+
+

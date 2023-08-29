@@ -1,0 +1,106 @@
+Sobre o Command Pattern
+
+"Encapsula qualquer metodo ou DATA, que for necessário, dentro de um Storable Object.
+Assim ele poderá ser executado posteriormente."
+
+
+
+-=< Composição >=-
+Possui 5 Componentes
+
+Abstract Command; Concrete Command; Invoker; Receiver; Client;
+
+Abstract Command: como todo command tem que se comportar.
+Concrete Command: O comando em particular ex.: "ChangeColorCommand", "HealCommand", "WalkCommand"...
+Client: É quem trigga o command (faz isso através do invoker). ex.: "Input(GetKeyDown(KeyCode.Z)){ command(); }"
+Invoker: O Invoker guarda em uma lista o comando recebido e executa o comando, em alguma ordem, usando o Receiver.
+Receiver: É quem possui a lógica para executar a ação.
+
+
+
+-=< Estrutura >=-
+
+O Client cria uma instancia de um Concrete Command(CC) e guarda essa instancia de 'CC' usando o Invoker.
+Depois o Invoker executa o 'CC' usando o Receiver.
+
+Client -> Invoker -> Receiver
+Client cria o CC passa pro Invoker, o Invoker executa o CC usando o Receiver alvo.
+
+Na execução do comando pelo Invoker, pode Ser feito em diferentes formas:
+Queue: First-in, First-Out.
+Stack: Last-in, Last-Out.
+Custom: executar por algum tipo de prioridade. 
+
+
+
+-=< Implementação >=-
+Basicamente precisa que um commando possua um Execute() e um Undo().
+para garantir a regra podemos usar um ABSTRACT ou uma INTERFACE(mais indicado).
+
+///Abstract Command
+public interface ICommand
+{
+    void Execute();
+    void Undo();
+}
+
+Exemplo de um CC implementado.
+
+///Concrete Command
+public class CommandExemple : ICommand{
+    //stored receiver
+    ReceiverClass _receiver;
+    //stored previous state
+    PreviousClass _previous;
+
+    //constructor to store receiver reference
+    public CommandExemple(ReceiverClass receiver){
+        _receiver = receiver;
+        _previous = receiver.GetComponent<PreviousClass>().info;
+    }
+    
+    //execute the stored logic
+    public void Execute(){
+        _receiver.Method();
+    }
+    //execute the stored logic
+    public void Undo(){
+        _receiver.Method_2_Undo(_previous);
+    }
+}
+
+///--
+//Sobre Undo. o metodo para o receiver fazer o undo() vai depender muito de que tipo de ação é essa.
+//por exemplo: se for um movimento de uma peça no tabuleiro, o Undo() seria voltar a posição anterior.
+//Ou se for mudar de cor, o Undo() voltaria para a cor anterior.
+///--
+
+a implementação de um Invoker é algo como:
+
+///Invoker
+public class InvokerExemple
+{
+    Stack<ICommand> _commandList;
+    //constructor com a lista de comandos (no caso é uma stack)
+    public InvokerExemple()
+    {
+        _commandList = new Stack<ICommand>();
+    }
+    public void AddCommand(ICommand newCommand) {
+        newCommand.Execute();
+        _commandList.Push(newCommand);
+    }
+    public void UndoCommand()
+    {
+        if (_commandList.Count > 0)
+        {
+            ICommand latestCommand = _commandList.Pop();
+            latestCommand.Undo();
+        }
+    }
+}
+
+
+o Receiver é o objeto que possui os metodos que fazem as ações.
+Pode ser o player com seu movimento e taque, pode ser um lampada que acende, 
+pode ser... o que possuir a lógica da ação.
