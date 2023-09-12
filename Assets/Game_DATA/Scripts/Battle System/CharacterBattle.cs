@@ -32,9 +32,35 @@ public class CharacterBattle : MonoBehaviour
     {
         animator.Play("bonecoTeste_atk");
     }
-    public int GiveDamage() { 
-        return characterBase.attack; }
-    public void ReceiveDamage(int damage) {
-        characterBase.hp -= damage; 
+    public int GiveDamageFromAura(ScriptableObject auraSOSelected) {
+        switch (auraSOSelected)
+        {
+            case LeftArmAura_ScriptableObject:
+                //gastar PA
+                characterBase.actionPoints -= characterBase.left_Arm_Aura.attackActionPointsCost;
+                return characterBase.left_Arm_Aura.attack;
+            case RightArmAura_ScriptableObject:
+                characterBase.actionPoints -= characterBase.right_Arm_Aura.attackActionPointsCost;
+                return characterBase.right_Arm_Aura.attack;
+            default:
+                return 0;
+        }
+    }
+    public void ReceiveDamage(int damage, ScriptableObject auraSOTarget) {
+        switch (auraSOTarget)
+        {
+            case HeadAura_ScriptableObject:
+                characterBase.headHp -= damage;
+                break;
+            case LeftArmAura_ScriptableObject:
+                characterBase.leftArmHp -= damage; 
+                break;
+            case RightArmAura_ScriptableObject:
+                characterBase.rightArmHp -= damage; 
+                break;
+            default:
+                characterBase.torsoHp -= damage; 
+                break;
+        }
     }
 }

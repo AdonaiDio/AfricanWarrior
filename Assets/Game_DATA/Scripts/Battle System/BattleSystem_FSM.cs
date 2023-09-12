@@ -14,7 +14,7 @@ public class BattleSystem_FSM : FiniteStateMachine
     //referencias dos personagens em cena
     private GameObject playerChar;
     private CharacterBattle playerCharBattle;
-    private Character_Base playerCharBase;
+    [HideInInspector] public Character_Base playerCharBase;
     private GameObject enemyChar;
     private CharacterBattle enemyCharBattle;
     private Character_Base enemyCharBase;
@@ -68,31 +68,46 @@ public class BattleSystem_FSM : FiniteStateMachine
     }
 
     //botão só o player usa
-    public void AtackButton()
+    public void LeftArmAtackButton()
     {
         playerCharBattle.AtackAnim();
-        enemyCharBattle.ReceiveDamage(playerCharBattle.GiveDamage());
+        enemyCharBattle.ReceiveDamage(playerCharBattle.GiveDamageFromAura(playerCharBase.left_Arm_Aura), 
+                                      enemyCharBase.torso_Aura);
+        CheckForEndTurnCondition();
+    }
+    public void RightArmAtackButton()
+    {
+        playerCharBattle.AtackAnim();
+        enemyCharBattle.ReceiveDamage(playerCharBattle.GiveDamageFromAura(playerCharBase.right_Arm_Aura),
+                                      enemyCharBase.torso_Aura);
+        CheckForEndTurnCondition();
     }
     public void EndTurn()
     {
         Events.onEndTurnEvent.Invoke();
     }
+    public void CheckForEndTurnCondition() 
+    {
+        if (playerCharBase.actionPoints < 1)
+        {
+            EndTurn();
+        }
+    }
     public bool CheckForEndBattleCondition()
     {
-        if (playerCharBase.hp <= 0)
+        if (playerCharBase.torsoHp <= 0)
         {
             //Events.onLostBattleEvent.Invoke();
             lostUI.SetActive(true);
             ChangeState(lostState);
             return true;
-        } else if (enemyCharBase.hp <= 0)
+        } else if (enemyCharBase.torsoHp <= 0)
         {
             //Events.onWonBattleEvent.Invoke();
             wonUI.SetActive(true);
             ChangeState(wonState);
             return true;
         }
-
         return false;
     }
 }

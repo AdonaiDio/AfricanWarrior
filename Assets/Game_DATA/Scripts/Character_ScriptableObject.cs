@@ -6,8 +6,8 @@ using UnityEngine;
 public class Character_ScriptableObject : ScriptableObject
 {
     public string name;
-    public int maxHp;
-    public int attack;
-    public int initialActionPoints;
-    public int maxActionPoints;
+    public HeadAura_ScriptableObject head_Aura;
+    public TorsoAura_ScriptableObject torso_Aura;
+    public LeftArmAura_ScriptableObject left_Arm_Aura;
+    public RightArmAura_ScriptableObject right_Arm_Aura;
 }

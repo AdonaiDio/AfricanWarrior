@@ -1850,12 +1850,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterScriptableObject: {fileID: 0}
   characterName: 
-  maxHp: 0
-  hp: 0
-  attack: 0
-  initialActionPoints: 0
-  maxActionPoints: 0
   actionPoints: 0
+  head_Aura: {fileID: 0}
+  torso_Aura: {fileID: 0}
+  left_Arm_Aura: {fileID: 0}
+  right_Arm_Aura: {fileID: 0}
+  headHp: 0
+  leftArmHp: 0
+  rightArmHp: 0
+  torsoHp: 0
 --- !u!114 &-2225450942875759511
 MonoBehaviour:
   m_ObjectHideFlags: 0
