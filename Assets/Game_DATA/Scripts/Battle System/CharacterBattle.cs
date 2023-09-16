@@ -37,10 +37,10 @@ public class CharacterBattle : MonoBehaviour
         {
             case LeftArmAura_ScriptableObject:
                 //gastar PA
-                characterBase.actionPoints -= characterBase.left_Arm_Aura.attackActionPointsCost;
+                characterBase.actionPoints -= characterBase.left_Arm_Aura.attackAPCost;
                 return characterBase.left_Arm_Aura.attack;
             case RightArmAura_ScriptableObject:
-                characterBase.actionPoints -= characterBase.right_Arm_Aura.attackActionPointsCost;
+                characterBase.actionPoints -= characterBase.right_Arm_Aura.attackAPCost;
                 return characterBase.right_Arm_Aura.attack;
             default:
                 return 0;

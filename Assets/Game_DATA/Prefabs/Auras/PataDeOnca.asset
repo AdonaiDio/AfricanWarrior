@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29605db4f4b7bff4a9fd15b71dc597e3, type: 3}
-  m_Name: NoRightArmAura
+  m_Name: PataDeOnca
   m_EditorClassIdentifier: 
-  auraName: Sem Aura
-  animalType: 0
-  sprite: {fileID: 21300000, guid: 8475f9ba89d498f4fb2dc0be61215e21, type: 3}
-  hp: 1
-  skillDescription: "N\xE3o h\xE1 aura no bra\xE7o direito."
-  attack: 1
-  attackAPCost: 0
-  skillAPCost: 0
+  auraName: "Pata De On\xE7a"
+  animalType: 3
+  sprite: {fileID: 21300000, guid: 0c4b54e6ac4286e468bede58234b2770, type: 3}
+  hp: 40
+  skillDescription: "Causa 30 de dano a aura Alvo inimiga. \"Alisa meu pelo\" - On\xE7a"
+  attack: 15
+  attackAPCost: 2
+  skillAPCost: 4

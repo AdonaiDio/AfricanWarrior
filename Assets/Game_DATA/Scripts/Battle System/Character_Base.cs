@@ -49,6 +49,6 @@ public class Character_Base : MonoBehaviour
         leftArmHp = left_Arm_Aura.hp;
         right_Arm_Aura = characterScriptableObject.right_Arm_Aura;
         rightArmHp = right_Arm_Aura.hp;
-        actionPoints = characterScriptableObject.torso_Aura.initialActionPoints;
+        actionPoints = characterScriptableObject.torso_Aura.actionPointsPerTurn;
     }
 }

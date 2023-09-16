@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ff7524c3c6257c47ba2073d0e430317, type: 3}
-  m_Name: NoTorsoAura
+  m_Name: CascoDeTatu
   m_EditorClassIdentifier: 
-  auraName: Sem aura
-  animalType: 0
-  sprite: {fileID: 21300000, guid: 397d4f26d18744349b7f9305f86db173, type: 3}
-  hp: 5
-  torsoDescription: "N\xE3o h\xE1 aura no torso."
-  actionPointsPerTurn: 1
+  auraName: Casco De Tatu
+  animalType: 2
+  sprite: {fileID: 21300000, guid: 5857d8379f14d9f42a7de5ce7a6c5284, type: 3}
+  hp: 100
+  torsoDescription: "Torso de tatu, carapa\xE7a resistente. Fa\xE7a tudo que o espirito
+    de tatu permitir."
+  actionPointsPerTurn: 4

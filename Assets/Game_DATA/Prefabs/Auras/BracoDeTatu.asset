@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78a4f6908e95932469ab871db5e95aad, type: 3}
-  m_Name: NoLeftArmAura
+  m_Name: BracoDeTatu
   m_EditorClassIdentifier: 
-  auraName: Sem Aura
-  animalType: 0
-  sprite: {fileID: 21300000, guid: a2cb363bb20d5ad419a3ee1c52c532f3, type: 3}
-  hp: 1
-  skillDescription: "N\xE3o h\xE1 aura no bra\xE7o esquerdo."
-  attack: 1
-  attackAPCost: 0
-  skillAPCost: 0
+  auraName: "Bra\xE7o De Tatu"
+  animalType: 2
+  sprite: {fileID: 21300000, guid: 2714b169f19bb3942a1f4ec056be5f9c, type: 3}
+  hp: 60
+  skillDescription: Causa 5 de dano Geral em todas as partes do inimigo.
+  attack: 10
+  attackAPCost: 1
+  skillAPCost: 3
