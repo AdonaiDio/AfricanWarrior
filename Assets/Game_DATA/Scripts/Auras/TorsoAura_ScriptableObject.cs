@@ -12,7 +12,7 @@ public class TorsoAura_ScriptableObject : ScriptableObject
     public AnimalType animalType;
     public Sprite sprite;
     public int hp;
-    public string torsoDescription;
+    public string description;
     public int actionPointsPerTurn;
 }
 

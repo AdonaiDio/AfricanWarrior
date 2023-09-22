@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   auraName: "Bra\xE7o De Tatu"
   animalType: 2
-  sprite: {fileID: 21300000, guid: 2714b169f19bb3942a1f4ec056be5f9c, type: 3}
+  sprite: {fileID: 21300000, guid: c6a51380d0ef73241b51e0b0d7893ca0, type: 3}
   hp: 60
-  skillDescription: Causa 5 de dano Geral em todas as partes do inimigo.
+  skill:
+    skillType: 1
+    skillAmount: 5
+    targets: -1
+    selfTarget: 0
+  description: Causa 5 de dano Geral em todas as partes do inimigo.
   attack: 10
   attackAPCost: 1
   skillAPCost: 3

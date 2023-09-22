@@ -7,3 +7,10 @@ public enum AnimalType
     Tatu,
     Onça
 }
+public enum AuraParts
+{
+    Head,
+    LeftArm,
+    rightArm,
+    Torso
+}

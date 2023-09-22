@@ -32,8 +32,11 @@ public class BattleSystem_FSM : FiniteStateMachine
     public GameObject wonUI;
     public GameObject lostUI;
 
+    private DataPersistenceManager dataPersistence;
     private void Awake()
     {
+        dataPersistence = FindObjectOfType<DataPersistenceManager>();
+
         startBattleState = new StartBattle_State(this);
         playerTurnState = new PlayerTurn_State(this);
         enemyTurnState = new EnemyTurn_State(this);

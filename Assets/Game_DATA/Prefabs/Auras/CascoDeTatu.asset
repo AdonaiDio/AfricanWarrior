@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   auraName: Casco De Tatu
   animalType: 2
-  sprite: {fileID: 21300000, guid: 5857d8379f14d9f42a7de5ce7a6c5284, type: 3}
+  sprite: {fileID: 21300000, guid: e0c726168b3b78d4e9840ed96b98a065, type: 3}
   hp: 100
-  torsoDescription: "Torso de tatu, carapa\xE7a resistente. Fa\xE7a tudo que o espirito
+  description: "Torso de tatu, carapa\xE7a resistente. Fa\xE7a tudo que o espirito
     de tatu permitir."
   actionPointsPerTurn: 4

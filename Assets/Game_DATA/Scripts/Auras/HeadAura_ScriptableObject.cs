@@ -14,8 +14,8 @@ public class HeadAura_ScriptableObject : ScriptableObject
     public Sprite sprite;
     public int hp;
     public int AP_Cost;
-    //public Skill skill;
-    public string skillDescription;
+    public Skill skill;
+    public string description;
 }
 
 #if UNITY_EDITOR

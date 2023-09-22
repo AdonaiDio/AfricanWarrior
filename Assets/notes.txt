@@ -60,24 +60,27 @@ ativar no turno do player
 Fazer um esquema de opções de ação em forma de comandos.
 Fazer o inimigo tomar 1 ação por turno. (por hora)
 
--------
-Auras Customization Screen
-
-precisa de Player DATA, Player TEMP DATA, AurasList, AvailableAurasList...
-Controle de UI
-Atualizar infos na descriptionBox
-Salvar informações do player
-Apresentar auras disponíveis
-
 ------
-Cabeça de Lobo Guará
-Braço Esquerdo de Tatu Geral
-Braço Direito de Onça Alvo
-Dorso de Tatu
+Cabeça de Lobo Guará > Cura 1 aura própria em 20PV (menos dorso)
+
+Braço Esquerdo de Tatu Geral > Causa 5 de dano Geral em todas as partes do inimigo.
+
+Braço Direito de Onça Alvo > Causa 30 de dano a aura Alvo inimiga. "Alisa meu pelo" - Onça
+
+Torso de Tatu > Torso de tatu, carapaça resistente. Faça tudo que o espirito de tatu permitir.
 ------
+COMBATE
+>Fazer as skills das auras
+>iniciar Player(DataPersistence) e Inimigo(LevelData)
+>Rever combate
+>Novo Layout do combate
+>Implementar todos os comandos de combate possíveis
+>Turno do inimigo
 
-1º fazer uma lista com todas as auras do jogo, acossiando seu DATA(ScriptableObject)
-Buscar essa lista de auras e criar settar a tela de customização
 
-2º fazer um player gamedata onde vai ser salvo posição no mapa, gameconfig, 
-salvar listas globais como lsita de auras disponíveis
+//flag enum check exemple
+
+if (resistance.HasFlag(abilityType))
+{
+    print("You are resistance to this damage type");
+}

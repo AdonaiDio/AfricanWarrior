@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a4f6908e95932469ab871db5e95aad, type: 3}
   m_Name: NoLeftArmAura
   m_EditorClassIdentifier: 
-  auraName: Sem Aura
+  auraName: "Sem Aura De M\xE3o Esquerda"
   animalType: 0
   sprite: {fileID: 21300000, guid: a2cb363bb20d5ad419a3ee1c52c532f3, type: 3}
   hp: 1
-  skillDescription: "N\xE3o h\xE1 aura no bra\xE7o esquerdo."
+  description: "N\xE3o h\xE1 aura no bra\xE7o esquerdo."
   attack: 1
   attackAPCost: 0
   skillAPCost: 0

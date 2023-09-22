@@ -8,7 +8,9 @@ public class MapPoint : MonoBehaviour
 {
     //Cada ponto no mapa está localizado de algum lado deste MapPoint
     //public Dictionary<MapPoint, Direction> pontosAdjacente;
+    public string mapName;
     public List<MapPointDictionary> pontosAdjacentes;
+    public int mapPointID;
 }
 
 [Serializable]

@@ -12,8 +12,8 @@ public class RightArmAura_ScriptableObject : ScriptableObject
     public AnimalType animalType;
     public Sprite sprite;
     public int hp;
-    //public Skill
-    public string skillDescription;
+    public Skill skill;
+    public string description;
     public int attack;
     public int attackAPCost;
     public int skillAPCost;
