@@ -27,8 +27,12 @@ public class Character_Base : MonoBehaviour
     public int rightArmHp;
     public int torsoHp;
 
+    //battle info?
+    private Animator animator;
+    public bool IsSelectable = false;//ativa a seleção no selectPart
     private void Awake()
     {
+        animator = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -50,5 +54,43 @@ public class Character_Base : MonoBehaviour
         right_Arm_Aura = characterScriptableObject.right_Arm_Aura;
         rightArmHp = right_Arm_Aura.hp;
         actionPoints = characterScriptableObject.torso_Aura.actionPointsPerTurn;
+    }
+
+    public void AtackAnim()
+    {
+        animator.Play("bonecoTeste_atk");
+    }
+    public int GiveDamageFromAura(ScriptableObject auraSOSelected)
+    {
+        switch (auraSOSelected)
+        {
+            case LeftArmAura_ScriptableObject:
+                //gastar PA
+                actionPoints -= left_Arm_Aura.attackAPCost;
+                return left_Arm_Aura.attack;
+            case RightArmAura_ScriptableObject:
+                actionPoints -= right_Arm_Aura.attackAPCost;
+                return right_Arm_Aura.attack;
+            default:
+                return 0;
+        }
+    }
+    public void ReceiveDamage(int damage, ScriptableObject auraSOTarget)
+    {
+        switch (auraSOTarget)
+        {
+            case HeadAura_ScriptableObject:
+                headHp -= damage;
+                break;
+            case LeftArmAura_ScriptableObject:
+                leftArmHp -= damage;
+                break;
+            case RightArmAura_ScriptableObject:
+                rightArmHp -= damage;
+                break;
+            default:
+                torsoHp -= damage;
+                break;
+        }
     }
 }

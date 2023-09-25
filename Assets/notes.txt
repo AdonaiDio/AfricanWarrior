@@ -70,7 +70,7 @@ Braço Direito de Onça Alvo > Causa 30 de dano a aura Alvo inimiga. "Alisa meu pe
 Torso de Tatu > Torso de tatu, carapaça resistente. Faça tudo que o espirito de tatu permitir.
 ------
 COMBATE
->Fazer as skills das auras
+
 >iniciar Player(DataPersistence) e Inimigo(LevelData)
 >Rever combate
 >Novo Layout do combate
@@ -84,3 +84,21 @@ if (resistance.HasFlag(abilityType))
 {
     print("You are resistance to this damage type");
 }
+
+----
+ETAPAS COMBATE
+>inicia turno
+>Seleciona a parte
+>seleciona skill ou atack(se tiver)
+>resultado (subtrai os custo e executa a ação DANO)
+>retorna para a seleção de parte...
+>cond. sem PA ou quer passar -> terminar o turno
+----
+
+Sistema de seleção de partes
+
+no player:
+mouseOver higlight de cor e atualização dos dados (aura: nome cor e etc)
+no inimigo: 
+mouseOver higlight de cor e apresenta o HP
+Condição: Só apresentar hover no player ou inimigo se for permitido pela etapa de turno

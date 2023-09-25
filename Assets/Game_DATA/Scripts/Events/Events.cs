@@ -7,9 +7,12 @@ public static class Events
     public static readonly Evt onEndTurnEvent = new Evt();
     public static readonly Evt onWonBattleEvent = new Evt();
     public static readonly Evt onLostBattleEvent = new Evt();
+    public static readonly Evt<AuraParts, Character_Base> onMouseOverPartEvent = new Evt<AuraParts, Character_Base>();
+    public static readonly Evt<AuraParts, Character_Base> onMouseClickPartEvent = new Evt<AuraParts, Character_Base>();
+    public static readonly Evt<TurnStep> onTurnStepChange = new Evt<TurnStep>();
     //public static readonly Evt onPlayerBusyEvent = new Evt();
     //public static readonly Evt onPlayerBusyEventExit = new Evt();
-    
+
     //public static readonly Evt<MonoBehaviour> onDialogueEventExit = new Evt<MonoBehaviour>();
 }
 public class Evt

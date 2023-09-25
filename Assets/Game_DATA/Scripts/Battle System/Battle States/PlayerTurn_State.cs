@@ -17,7 +17,9 @@ public class PlayerTurn_State : BaseState
         bool stop = _fsm.CheckForEndBattleCondition();
         if (stop) { return; }
         Debug.Log(this.name);
-        Events.onEndTurnEvent.AddListener(OnEndTurn);
+        Events.onEndTurnEvent.AddListener(OnEndTurn);//se turno terminou chama OnEndTurn
+        //_fsm.currentTurnStep = TurnStep.ChooseMove;
+        Events.onTurnStepChange.Invoke(TurnStep.ChooseMove);
     }
     public override void _Update()
     {
