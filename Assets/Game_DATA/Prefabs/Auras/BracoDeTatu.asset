@@ -19,9 +19,11 @@ MonoBehaviour:
   skill:
     skillType: 1
     skillAmount: 5
-    targets: -1
+    targets: 15
     selfTarget: 0
   description: Causa 5 de dano Geral em todas as partes do inimigo.
   attack: 10
   attackAPCost: 1
   skillAPCost: 3
+  actionPointsPerTurn: 0
+  auraPart: 1

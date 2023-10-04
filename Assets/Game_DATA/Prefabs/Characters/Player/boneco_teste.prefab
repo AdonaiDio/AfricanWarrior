@@ -232,6 +232,7 @@ MonoBehaviour:
   - {fileID: 8559056391229750851}
   aura: 2
   healthBar_prefab: {fileID: 3290684639352530777, guid: a3545a25bcae92241a5960125704fad6, type: 3}
+  floatigText_prefab: {fileID: 1986234037157886045, guid: 82b8ea14184f4524094019ff66df70e4, type: 3}
 --- !u!60 &1394533819475361686
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -523,6 +524,7 @@ MonoBehaviour:
   - {fileID: 4847653893422031377}
   aura: 1
   healthBar_prefab: {fileID: 3290684639352530777, guid: a3545a25bcae92241a5960125704fad6, type: 3}
+  floatigText_prefab: {fileID: 1986234037157886045, guid: 82b8ea14184f4524094019ff66df70e4, type: 3}
 --- !u!60 &2168207318337002735
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -687,6 +689,7 @@ MonoBehaviour:
   - {fileID: 4847653893422031377}
   aura: 1
   healthBar_prefab: {fileID: 3290684639352530777, guid: a3545a25bcae92241a5960125704fad6, type: 3}
+  floatigText_prefab: {fileID: 1986234037157886045, guid: 82b8ea14184f4524094019ff66df70e4, type: 3}
 --- !u!60 &3661653037731152764
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -957,6 +960,7 @@ MonoBehaviour:
   - {fileID: 8301052726040611044}
   aura: 0
   healthBar_prefab: {fileID: 3290684639352530777, guid: a3545a25bcae92241a5960125704fad6, type: 3}
+  floatigText_prefab: {fileID: 1986234037157886045, guid: 82b8ea14184f4524094019ff66df70e4, type: 3}
 --- !u!60 &5967673260031347413
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1423,6 +1427,7 @@ MonoBehaviour:
   - {fileID: 4847653893422031377}
   aura: 1
   healthBar_prefab: {fileID: 3290684639352530777, guid: a3545a25bcae92241a5960125704fad6, type: 3}
+  floatigText_prefab: {fileID: 1986234037157886045, guid: 82b8ea14184f4524094019ff66df70e4, type: 3}
 --- !u!60 &3816002972275467901
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1655,6 +1660,7 @@ MonoBehaviour:
   - {fileID: 4879048061488405813}
   aura: 3
   healthBar_prefab: {fileID: 3290684639352530777, guid: a3545a25bcae92241a5960125704fad6, type: 3}
+  floatigText_prefab: {fileID: 1986234037157886045, guid: 82b8ea14184f4524094019ff66df70e4, type: 3}
 --- !u!1 &5215582072438808389
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,6 +2126,7 @@ MonoBehaviour:
   - {fileID: 8559056391229750851}
   aura: 2
   healthBar_prefab: {fileID: 3290684639352530777, guid: a3545a25bcae92241a5960125704fad6, type: 3}
+  floatigText_prefab: {fileID: 1986234037157886045, guid: 82b8ea14184f4524094019ff66df70e4, type: 3}
 --- !u!60 &6155881759022711657
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2286,6 +2293,10 @@ MonoBehaviour:
   leftArmHp: 0
   rightArmHp: 0
   torsoHp: 0
+  is_head_ON: 1
+  is_leftArm_ON: 1
+  is_rightArm_ON: 1
+  is_torso_ON: 1
   IsSelectable: 0
 --- !u!1 &6583509568223085475
 GameObject:
@@ -2940,6 +2951,8 @@ GameObject:
   - component: {fileID: 3673078300318610820}
   - component: {fileID: 65128753884774556}
   - component: {fileID: 2654289171553774483}
+  - component: {fileID: 3206493531793621336}
+  - component: {fileID: 6057944125132900983}
   m_Layer: 0
   m_Name: "pesco\xE7o"
   m_TagString: Untagged
@@ -3035,6 +3048,56 @@ MonoBehaviour:
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
+--- !u!114 &3206493531793621336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8301052726040611044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae24aa2bac2f1994d865b05a42a36f94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameObjectsSelected:
+  - {fileID: 3553537624620914478}
+  - {fileID: 8301052726040611044}
+  aura: 0
+  healthBar_prefab: {fileID: 3290684639352530777, guid: a3545a25bcae92241a5960125704fad6, type: 3}
+  floatigText_prefab: {fileID: 1986234037157886045, guid: 82b8ea14184f4524094019ff66df70e4, type: 3}
+--- !u!60 &6057944125132900983
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8301052726040611044}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.35, y: 0.42}
+    newSize: {x: 0.35, y: 0.42}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.13499999, y: 0.21}
+      - {x: -0.114999995, y: 0.21}
+      - {x: -0.175, y: 0.19}
+      - {x: -0.175, y: -0.21}
+      - {x: 0.125, y: -0.21}
+      - {x: 0.175, y: -0.11}
+      - {x: 0.175, y: 0.16}
 --- !u!1 &8559056391229750851
 GameObject:
   m_ObjectHideFlags: 0
@@ -3161,6 +3224,7 @@ MonoBehaviour:
   - {fileID: 8559056391229750851}
   aura: 2
   healthBar_prefab: {fileID: 3290684639352530777, guid: a3545a25bcae92241a5960125704fad6, type: 3}
+  floatigText_prefab: {fileID: 1986234037157886045, guid: 82b8ea14184f4524094019ff66df70e4, type: 3}
 --- !u!60 &8487533077556585277
 PolygonCollider2D:
   m_ObjectHideFlags: 0

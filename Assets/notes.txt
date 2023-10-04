@@ -1,25 +1,11 @@
 
 
-talvez um BehaviorTree seja necessário para o controle do inimigo em combate, mas isso aumenta muito
-a complexidade. (pra mim que não tenho pratica com behavior/"AI")
+talvez um BehaviorTree seja necessário para o controle do inimigo em combate, 
+mas isso aumenta muito a complexidade. 
+(pra mim que não tenho pratica com behavior/"AI")
 
 
--------------
-
-Meu objetivo é oferecer uma estrutura basica para viabilizar um combate em turnos
-
-------------
-
-
-3º implementar uma a uma das mecânicas basicas, como Pontos de ação, Alvo...
-
-4º após o basico do combate x1 estiver feito, separar o player em diferentes
-membros(auras) com suas ações próprias (por hora será tudo hardcoded)
-
-5º implementar dano residual e efeitos que não acontecem no mesmo turno do jogador.
-
-
-------------
+-----------
 
 fazer uma implementação hardcoded antes de um Command pattern
 Command pattern vai servir para encapsular AI Behavior e ações em 1 comando. 
@@ -33,72 +19,43 @@ Fazer:
 >criar turno automatico do inimigo
 >usando as mesma possibilidades de comando
 
-
-------
-Fazer prototipo de: 
->Menu +/-
->Mapa +/-
->Tela de Personagem --
-
-------
-Criar as apartes do personagem. OK
-Colocar Scriptable Objects para cada aura. OK +/-
-Associar partes do gameObject do boneco com as auras que recebem alvo e etc. 
-
-------
->Navegar menu de combate
->Executar Habilidade/Ataque +/-
->>dar alvo / navegar nas partes do inimigo
->>consumir PA
->>Animação OK
->>Deduzir danos OK
->>votlar navegação/fim de combate 
-
-Desativar controles do player no turno do inimigo
-ativar no turno do player
-
-Fazer um esquema de opções de ação em forma de comandos.
-Fazer o inimigo tomar 1 ação por turno. (por hora)
-
-------
-Cabeça de Lobo Guará > Cura 1 aura própria em 20PV (menos dorso)
-
-Braço Esquerdo de Tatu Geral > Causa 5 de dano Geral em todas as partes do inimigo.
-
-Braço Direito de Onça Alvo > Causa 30 de dano a aura Alvo inimiga. "Alisa meu pelo" - Onça
-
-Torso de Tatu > Torso de tatu, carapaça resistente. Faça tudo que o espirito de tatu permitir.
-------
-COMBATE
-
->iniciar Player(DataPersistence) e Inimigo(LevelData)
->Rever combate
->Novo Layout do combate
->Implementar todos os comandos de combate possíveis
->Turno do inimigo
-
-
-//flag enum check exemple
-
-if (resistance.HasFlag(abilityType))
-{
-    print("You are resistance to this damage type");
-}
-
 ----
 ETAPAS COMBATE
 >inicia turno
 >Seleciona a parte
->seleciona skill ou atack(se tiver)
+>seleciona skill ou attack(se tiver)
 >resultado (subtrai os custo e executa a ação DANO)
 >retorna para a seleção de parte...
 >cond. sem PA ou quer passar -> terminar o turno
 ----
 
-Sistema de seleção de partes
+---------
+POR ULTIMO:
+Ajustar skins
+ajustar animações
+ajustar sons
 
-no player:
-mouseOver higlight de cor e atualização dos dados (aura: nome cor e etc)
-no inimigo: 
-mouseOver higlight de cor e apresenta o HP
-Condição: Só apresentar hover no player ou inimigo se for permitido pela etapa de turno
+----------
+clicar no mapa e iniciar combate
+Pop-up se que batalhar
+
+Inicia o combate instanciando o inimigo 
+com as infos da build passadas pelo level Info
+
+-----------
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Iniciar combate do mapa.
+
+Criar uma cena de combate por ponto no mapa.
+
+Bloquear movimento pro proximo ponto no mapa até 
+ter vencido o combate anterior.
+
+Colocar e fazer os novos personagens e animações, som...
+
+Tela de fim de jogo( Vitoria/ Derrota)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Testar o jogo todo!

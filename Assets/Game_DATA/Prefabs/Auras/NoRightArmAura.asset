@@ -16,7 +16,14 @@ MonoBehaviour:
   animalType: 0
   sprite: {fileID: 21300000, guid: 8475f9ba89d498f4fb2dc0be61215e21, type: 3}
   hp: 1
+  skill:
+    skillType: 0
+    skillAmount: 0
+    targets: 0
+    selfTarget: 0
   description: "N\xE3o h\xE1 aura no bra\xE7o direito."
   attack: 1
-  attackAPCost: 0
+  attackAPCost: 1
   skillAPCost: 0
+  actionPointsPerTurn: 0
+  auraPart: 2

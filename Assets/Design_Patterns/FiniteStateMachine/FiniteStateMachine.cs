@@ -33,7 +33,7 @@ public class FiniteStateMachine : MonoBehaviour
     public void ChangeState(BaseState newState) //state transition
     {
         currentState._Exit();
-
+        Events.onChangeState.Invoke(newState);
         currentState = newState;
         newState._Enter();
     }

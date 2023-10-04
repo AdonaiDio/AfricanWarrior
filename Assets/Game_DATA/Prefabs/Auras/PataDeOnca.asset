@@ -25,3 +25,5 @@ MonoBehaviour:
   attack: 15
   attackAPCost: 2
   skillAPCost: 4
+  actionPointsPerTurn: 0
+  auraPart: 2

@@ -16,5 +16,14 @@ MonoBehaviour:
   animalType: 0
   sprite: {fileID: 21300000, guid: 397d4f26d18744349b7f9305f86db173, type: 3}
   hp: 5
+  skill:
+    skillType: 0
+    skillAmount: 0
+    targets: 0
+    selfTarget: 0
   description: "N\xE3o h\xE1 aura no torso."
+  attack: 0
+  attackAPCost: 0
+  skillAPCost: 0
   actionPointsPerTurn: 1
+  auraPart: 3

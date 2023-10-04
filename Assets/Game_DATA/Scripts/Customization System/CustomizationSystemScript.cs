@@ -208,106 +208,6 @@ public class CustomizationSystemScript : MonoBehaviour
         torsoSlotImg.sprite = currentTorsoAura.sprite;
     }
 
-
-    //private void StoreAurasByAnimalGroup()
-    //{
-    //    //acessar lista de auras disponíveis
-    //    //guardar em grupos de animais
-
-    //    foreach (string animal in animalTypeList)
-    //    {
-    //        foreach (HeadAura_ScriptableObject SO in headAuras)
-    //        {
-    //            if (SO.animalType.ToString() == animal)
-    //            {
-    //                Debug.Log(animal);
-    //                switch (animal)
-    //                {
-    //                    case "Human":
-    //                        HumanAuras.Add(SO);
-    //                        break;
-    //                    case "LoboGuara":
-    //                        LoboGuaraAuras.Add(SO);
-    //                        break;
-    //                    case "Tatu":
-    //                        TatuAuras.Add(SO);
-    //                        break;
-    //                    case "Onça":
-    //                        OnçaAuras.Add(SO);
-    //                        break;
-    //                }
-    //            }
-    //        }
-    //        foreach (LeftArmAura_ScriptableObject SO in leftArmAuras)
-    //        {
-    //            if (SO.animalType.ToString() == animal)
-    //            {
-    //                Debug.Log(animal);
-    //                switch (animal)
-    //                {
-    //                    case "Human":
-    //                        HumanAuras.Add(SO);
-    //                        break;
-    //                    case "LoboGuara":
-    //                        LoboGuaraAuras.Add(SO);
-    //                        break;
-    //                    case "Tatu":
-    //                        TatuAuras.Add(SO);
-    //                        break;
-    //                    case "Onça":
-    //                        OnçaAuras.Add(SO);
-    //                        break;
-    //                }
-    //            }
-    //        }
-    //        foreach (RightArmAura_ScriptableObject SO in rightArmAuras)
-    //        {
-    //            if (SO.animalType.ToString() == animal)
-    //            {
-    //                Debug.Log(animal);
-    //                switch (animal)
-    //                {
-    //                    case "Human":
-    //                        HumanAuras.Add(SO);
-    //                        break;
-    //                    case "LoboGuara":
-    //                        LoboGuaraAuras.Add(SO);
-    //                        break;
-    //                    case "Tatu":
-    //                        TatuAuras.Add(SO);
-    //                        break;
-    //                    case "Onça":
-    //                        OnçaAuras.Add(SO);
-    //                        break;
-    //                }
-    //            }
-    //        }
-    //        foreach (TorsoAura_ScriptableObject SO in torsoAuras)
-    //        {
-    //            if (SO.animalType.ToString() == animal)
-    //            {
-    //                Debug.Log(animal);
-    //                switch (animal)
-    //                {
-    //                    case "Human":
-    //                        HumanAuras.Add(SO);
-    //                        break;
-    //                    case "LoboGuara":
-    //                        LoboGuaraAuras.Add(SO);
-    //                        break;
-    //                    case "Tatu":
-    //                        TatuAuras.Add(SO);
-    //                        break;
-    //                    case "Onça":
-    //                        OnçaAuras.Add(SO);
-    //                        break;
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
-
-
     #region Aura Button left and right Bulshit
     private void NextButtonLeft(GameObject auraImage, string auraPart)
     {
@@ -562,7 +462,7 @@ public class CustomizationSystemScript : MonoBehaviour
             descBox_PA_Atk_GO.SetActive(false);
             //subistituir o PA skill Text (se tiver ativar se não desativar)
             descBox_PA_Skill_GO.SetActive(true);
-            descBox_PA_Skill.text = headAura_temp.AP_Cost.ToString();
+            descBox_PA_Skill.text = headAura_temp.skillAPCost.ToString();
             //subistituir o description Text
             descBox_Description.text = "Descrição: " + headAura_temp.description;
         }

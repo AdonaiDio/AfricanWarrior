@@ -16,6 +16,15 @@ MonoBehaviour:
   animalType: 2
   sprite: {fileID: 21300000, guid: e0c726168b3b78d4e9840ed96b98a065, type: 3}
   hp: 100
+  skill:
+    skillType: 0
+    skillAmount: 0
+    targets: 0
+    selfTarget: 0
   description: "Torso de tatu, carapa\xE7a resistente. Fa\xE7a tudo que o espirito
     de tatu permitir."
+  attack: 0
+  attackAPCost: 0
+  skillAPCost: 0
   actionPointsPerTurn: 4
+  auraPart: 3

@@ -18,6 +18,14 @@ public class EnemyTurn_State : BaseState
         if (stop) { return; }
         Debug.Log(this.name);
         Events.onEndTurnEvent.AddListener(OnEndTurn);
+        Events.onTurnStepChange.Invoke(TurnStep.ChooseMove);
+
+        _fsm.battleSystemUI.enemyTurnLabel.SetActive(true);
+        LeanTween.scale(_fsm.battleSystemUI.enemyTurnLabel, new Vector3(1, 1, 1), 1.5f).setEaseOutSine().setOnComplete(() =>
+        {
+            _fsm.battleSystemUI.enemyTurnLabel.SetActive(false);
+        });
+        _fsm.enemyChar.GetComponent<EnemyBehavior>().Execute();
     }
     public override void _Update()
     {

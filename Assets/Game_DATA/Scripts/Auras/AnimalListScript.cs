@@ -11,6 +11,6 @@ public enum AuraParts
 {
     Head,
     LeftArm,
-    rightArm,
+    RightArm,
     Torso
 }
