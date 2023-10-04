@@ -1,33 +1,11 @@
-provavelmente um FiniteStateMachine pode ajudar a controlar os estados do combate.
-Controle de turno e as etapas.
-
-talvez um BehaviorTree seja necessário para o controle do inimigo em combate, mas isso aumenta muito
-a complexidade. (pra mim que não tenho pratica com behavior/"AI")
-
-ScriptableObjects para as diferentes partes, o objetivo é facilitar montar uma parte do zero sem código.
 
 
--------------
+talvez um BehaviorTree seja necessário para o controle do inimigo em combate, 
+mas isso aumenta muito a complexidade. 
+(pra mim que não tenho pratica com behavior/"AI")
 
-Meu objetivo é oferecer uma estrutura basica para viabilizar um combate em turnos
 
-------------
-1º garantir as trocas de turno e tal. 
-
-2º usar apenas uma unica opção que seria atacar. 
-(facilitar o controle dos estados por hora)
-
-3º implementar uma a uma das mecânicas basicas, como Pontos de ação, Alvo...
-
-4º após o basico do combate x1 estiver feito, separar o player em diferentes
-membros(auras) com suas ações próprias (por hora será tudo hardcoded)
-
-5º implementar cooldown, dano residual e efeitos que não acontecem no mesmo turno do jogador.
-
-6º preparar os scriptable objects das partes para que o denilo possa escrever com 
-facilidade os designs de partes.
-
-------------
+-----------
 
 fazer uma implementação hardcoded antes de um Command pattern
 Command pattern vai servir para encapsular AI Behavior e ações em 1 comando. 
@@ -37,28 +15,47 @@ Para gerenciar e aplicar diferentes habilidades, power-ups ou efeitos durante o 
 -----------
 
 Fazer:
-1º
->Criar um character de batalha com DATA de HP e nome (por enquanto) >OK<
 
->Ataque funcionar  >OK<
->Cura funcionar
->Encerrar turno Funcionar  >OK<
-(tirar HP e curar HP)
-
-
-2º
 >criar turno automatico do inimigo
 >usando as mesma possibilidades de comando
 
-3º
->Fazer atk e cura gastar PA
-4º
->Criar auras para escolher na ação de batalha
->Auras configuráveis por Scriptable Objects
->>
+----
+ETAPAS COMBATE
+>inicia turno
+>Seleciona a parte
+>seleciona skill ou attack(se tiver)
+>resultado (subtrai os custo e executa a ação DANO)
+>retorna para a seleção de parte...
+>cond. sem PA ou quer passar -> terminar o turno
+----
 
+---------
+POR ULTIMO:
+Ajustar skins
+ajustar animações
+ajustar sons
 
+----------
+clicar no mapa e iniciar combate
+Pop-up se que batalhar
 
->Fazer um atk com status??
+Inicia o combate instanciando o inimigo 
+com as infos da build passadas pelo level Info
 
+-----------
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Iniciar combate do mapa.
+
+Criar uma cena de combate por ponto no mapa.
+
+Bloquear movimento pro proximo ponto no mapa até 
+ter vencido o combate anterior.
+
+Colocar e fazer os novos personagens e animações, som...
+
+Tela de fim de jogo( Vitoria/ Derrota)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Testar o jogo todo!

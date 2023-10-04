@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: enemy_SO
   m_EditorClassIdentifier: 
   name: enemy Xama
-  maxHp: 5
-  attack: 1
-  initialActionPoints: 1
-  maxActionPoints: 1
+  head_Aura: {fileID: 11400000, guid: e67675d1712cde9419c137d524ed2ad1, type: 2}
+  torso_Aura: {fileID: 11400000, guid: 291db02507124064da79ec94e0d19d6e, type: 2}
+  left_Arm_Aura: {fileID: 11400000, guid: ec99f7e9fd5dda943bd45610b3647547, type: 2}
+  right_Arm_Aura: {fileID: 11400000, guid: fa0b92767d0fe8c4c96c9841d58c5f97, type: 2}

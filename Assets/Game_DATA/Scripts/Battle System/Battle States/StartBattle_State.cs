@@ -25,6 +25,7 @@ public class StartBattle_State : BaseState
         {
             //int randNum = UnityEngine.Random.Range(0, 2); //de 0 a 1
             int randNum = 1;
+            _fsm.StartUI();
             _fsm.ChangeState(randNum == 0 ? _fsm.enemyTurnState : _fsm.playerTurnState);
         }
     }

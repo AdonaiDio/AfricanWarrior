@@ -17,7 +17,17 @@ public class PlayerTurn_State : BaseState
         bool stop = _fsm.CheckForEndBattleCondition();
         if (stop) { return; }
         Debug.Log(this.name);
-        Events.onEndTurnEvent.AddListener(OnEndTurn);
+        Events.onEndTurnEvent.AddListener(OnEndTurn);//se turno terminou chama OnEndTurn
+        //_fsm.currentTurnStep = TurnStep.ChooseMove;
+        _fsm.ResetAP(_fsm.playerCharBase);
+        Events.onTurnStepChange.Invoke(TurnStep.ChooseMove);
+
+        _fsm.battleSystemUI.playerTurnLabel.SetActive(true);
+        LeanTween.scale(_fsm.battleSystemUI.playerTurnLabel, new Vector3(1, 1, 1), 1.5f).setEaseOutSine().setOnComplete(() =>
+        {
+            _fsm.battleSystemUI.playerTurnLabel.SetActive(false);
+        });
+
     }
     public override void _Update()
     {

@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7419832710998420711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7419832710998420709}
+  - component: {fileID: 7419832710998420710}
+  m_Layer: 0
+  m_Name: DataPersistenceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7419832710998420709
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7419832710998420711}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.053532537, y: 0.4127753, z: -0.016918506}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7419832710998420710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7419832710998420711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f437d792cc2414240a613f0fae2f1d79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapPointPosition_ID: 0
+  unlockedMapPoint_ID_List: 00000000
+  equippedAura_Head: {fileID: 11400000, guid: e67675d1712cde9419c137d524ed2ad1, type: 2}
+  equippedAura_LeftArm: {fileID: 11400000, guid: ec99f7e9fd5dda943bd45610b3647547, type: 2}
+  equippedAura_RightArm: {fileID: 11400000, guid: fa0b92767d0fe8c4c96c9841d58c5f97, type: 2}
+  equippedAura_Torso: {fileID: 11400000, guid: 291db02507124064da79ec94e0d19d6e, type: 2}
+  availableAuraList:
+  - {fileID: 11400000, guid: e67675d1712cde9419c137d524ed2ad1, type: 2}
+  - {fileID: 11400000, guid: ec99f7e9fd5dda943bd45610b3647547, type: 2}
+  - {fileID: 11400000, guid: fa0b92767d0fe8c4c96c9841d58c5f97, type: 2}
+  - {fileID: 11400000, guid: 291db02507124064da79ec94e0d19d6e, type: 2}
+  - {fileID: 11400000, guid: 5f5cf9ca76b8c354b810c201689bf4ef, type: 2}
+  - {fileID: 11400000, guid: b60d04614600f0044a199ceb66aa6910, type: 2}
+  - {fileID: 11400000, guid: df22aada3ac93ab4097837d6c098db04, type: 2}
+  - {fileID: 11400000, guid: f1abe48361dcec044b60f8c7be73378f, type: 2}
+  allGameAurasList: []

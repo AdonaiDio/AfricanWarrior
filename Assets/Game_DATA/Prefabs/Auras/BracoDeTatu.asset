@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a4f6908e95932469ab871db5e95aad, type: 3}
+  m_Name: BracoDeTatu
+  m_EditorClassIdentifier: 
+  auraName: "Bra\xE7o De Tatu"
+  animalType: 2
+  sprite: {fileID: 21300000, guid: c6a51380d0ef73241b51e0b0d7893ca0, type: 3}
+  hp: 60
+  skill:
+    skillType: 1
+    skillAmount: 5
+    targets: 15
+    selfTarget: 0
+  description: Causa 5 de dano Geral em todas as partes do inimigo.
+  attack: 10
+  attackAPCost: 1
+  skillAPCost: 3
+  actionPointsPerTurn: 0
+  auraPart: 1
