@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23cec8ce969e7341a6769af43d7b7a1, type: 3}
+  m_Name: Armadillo_SO
+  m_EditorClassIdentifier: 
+  name: Espirito de Tatu Corrompido
+  head_Aura: {fileID: 11400000, guid: 6509de4d7a7af2247aefd96a0e14b47b, type: 2}
+  torso_Aura: {fileID: 11400000, guid: df22aada3ac93ab4097837d6c098db04, type: 2}
+  left_Arm_Aura: {fileID: 11400000, guid: 5f5cf9ca76b8c354b810c201689bf4ef, type: 2}
+  right_Arm_Aura: {fileID: 11400000, guid: b9c44be916d1feb409b5fbf32abc75d0, type: 2}

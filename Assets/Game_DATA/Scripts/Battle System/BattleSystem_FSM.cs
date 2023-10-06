@@ -29,7 +29,7 @@ public class BattleSystem_FSM : FiniteStateMachine
     //dados dos personagens dessa batalha.
     //Esses dados são colhidos de outra cena quando inicia combate
     public Character_ScriptableObject playerScriptableObject;
-    //public Character_ScriptableObject enemyScriptableObject;
+    public Character_ScriptableObject enemyScriptableObject;
     //Dados do jogo
     private DataPersistenceManager dataPersistence;
 
@@ -66,6 +66,7 @@ public class BattleSystem_FSM : FiniteStateMachine
     public bool SetUpBattlefield() {
         //configura tudo do player
         //playerChar = Instantiate(pf_characterBattle, position1.position, Quaternion.identity);
+
         playerCharBase = playerChar.GetComponent<Character_Base>();
         //atualizar os dados do DataPersistence no meu player
         playerScriptableObject.head_Aura = dataPersistence.equippedAura_Head;
@@ -81,7 +82,7 @@ public class BattleSystem_FSM : FiniteStateMachine
 
         enemyCharBase = enemyChar.GetComponent<Character_Base>();
 
-        //enemyCharBase.characterScriptableObject = enemyScriptableObject;
+        enemyCharBase.characterScriptableObject = enemyScriptableObject;
         enemyCharBase.SetCharacterAttributes();
         playerChar.SetActive(true);
         enemyChar.SetActive(true);
@@ -117,6 +118,7 @@ public class BattleSystem_FSM : FiniteStateMachine
                 }
                 else if (currentState.name == "Enemy Turn")
                 {
+                    battleSystemUI.DisableSkipTurnButton();
                     battleSystemUI.controlPanel.SetActive(false);
 
                     Debug.Log("Enemy Turn ChooseMove");

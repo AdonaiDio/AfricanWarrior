@@ -62,10 +62,6 @@ public class Character_Base : MonoBehaviour
     public void SetCharacterAttributes()
     {
         characterName = characterScriptableObject.name;
-        //maxHp = characterScriptableObject.maxHp;
-        //attack = characterScriptableObject.attack;
-        //initialActionPoints = characterScriptableObject.initialActionPoints;
-        //maxActionPoints = characterScriptableObject.maxActionPoints;
         head_Aura = characterScriptableObject.head_Aura;
         headHp = head_Aura.hp;
         torso_Aura = characterScriptableObject.torso_Aura;

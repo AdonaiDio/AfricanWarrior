@@ -15,7 +15,7 @@ MonoBehaviour:
   auraName: "Pata De On\xE7a"
   animalType: 3
   sprite: {fileID: 21300000, guid: 149c17470b960904b867ff4666630ff6, type: 3}
-  hp: 40
+  hp: 25
   skill:
     skillType: 1
     skillAmount: 30

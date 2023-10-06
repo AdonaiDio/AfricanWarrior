@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class MapManagerScript : MonoBehaviour
@@ -13,6 +14,8 @@ public class MapManagerScript : MonoBehaviour
     private DataPersistenceManager dataPersistence;
     
     public TMP_Text currentMapName;
+
+    public GameObject battlePopUp;
 
     private void Awake()
     {
@@ -30,10 +33,11 @@ public class MapManagerScript : MonoBehaviour
 
     public void CheckPossibleMoviment(MapPoint mapPoint)
     {
-        //checa se é um adjacente se sim pode andar pra lá
+        //checa se é um adjacente e se está desbloqueado sim pode andar pra lá
         foreach  (MapPointDictionary pointDictionary in currentPoint.pontosAdjacentes)
         {
-            if (pointDictionary.pontoNoMapa == mapPoint)
+            if (pointDictionary.pontoNoMapa == mapPoint 
+                && dataPersistence.unlockedMapPoint_ID_List.Contains(mapPoint.mapPointID) )
             {
                 GoToPoint(mapPoint);
             }
@@ -65,5 +69,15 @@ public class MapManagerScript : MonoBehaviour
     public void SpawnOnMapPoint(MapPoint mp)
     {
         selector.transform.position = mp.transform.position;
+    }
+
+    public void CloseBattlePopUp()
+    {
+        battlePopUp.SetActive(false);
+    }
+    public void StartBattle()
+    {
+        // tem que por o offset da ordem das batalhas
+        SceneManager.LoadScene(currentPoint.mapPointID + 3);
     }
 }

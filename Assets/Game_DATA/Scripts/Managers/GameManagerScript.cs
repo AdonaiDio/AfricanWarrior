@@ -8,7 +8,7 @@ public class GameManagerScript : MonoBehaviour
     
     public void NewGame()
     {
-        //DataPersistenceManager.instance.SaveGame();
+        DataPersistenceManager.instance.DeleteJson();
     }
     public void LoadGame()
     {
@@ -22,5 +22,8 @@ public class GameManagerScript : MonoBehaviour
     {
         Application.Quit();
     }
-    
+    public void SaveGame()
+    {
+        DataPersistenceManager.instance.SaveJson();
+    }
 }

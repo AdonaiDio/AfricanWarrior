@@ -384,13 +384,15 @@ public class BattleSystemUI : MonoBehaviour
         void IfAuraPartEnabled(Targets t)
         {
             //se a opção existe mesmo aí testa, se não, nem faz nada.
-            if ((GetAura(t, selected_Acting_Char).skill.skillType != SkillType.none) ||
-            (GetAura(t, selected_Acting_Char).attackAPCost != 0))
-            {
+            if (GetAura(t, selected_Acting_Char).skill.skillType != SkillType.none)
+            { 
                 if (IsAPEnough(t, selected_Acting_Char, "skill"))
                 {
                     canPlayThisTurn = true;
                 }
+            }
+            if (GetAura(t, selected_Acting_Char).attackAPCost != 0)
+            {
                 if (IsAPEnough(t, selected_Acting_Char, "atk"))
                 {
                     canPlayThisTurn = true;

@@ -15,7 +15,7 @@ MonoBehaviour:
   auraName: Casco De Tatu
   animalType: 2
   sprite: {fileID: 21300000, guid: e0c726168b3b78d4e9840ed96b98a065, type: 3}
-  hp: 100
+  hp: 80
   skill:
     skillType: 0
     skillAmount: 0

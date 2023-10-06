@@ -15,14 +15,14 @@ MonoBehaviour:
   auraName: "Sem Aura De M\xE3o Esquerda"
   animalType: 0
   sprite: {fileID: 21300000, guid: a2cb363bb20d5ad419a3ee1c52c532f3, type: 3}
-  hp: 1
+  hp: 30
   skill:
     skillType: 0
     skillAmount: 0
     targets: 0
     selfTarget: 0
   description: "N\xE3o h\xE1 aura no bra\xE7o esquerdo."
-  attack: 1
+  attack: 8
   attackAPCost: 1
   skillAPCost: 0
   actionPointsPerTurn: 0

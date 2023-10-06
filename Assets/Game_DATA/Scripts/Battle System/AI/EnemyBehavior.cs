@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     private BattleSystem_FSM BS_FSM;
+    private int executing = 0;
 
     private void OnEnable()
     {
@@ -23,26 +24,21 @@ public class EnemyBehavior : MonoBehaviour
     {
         BS_FSM.ResetAP(BS_FSM.enemyCharBase);
         BS_FSM.battleSystemUI.selected_Acting_Char = BS_FSM.enemyCharBase;
+        executing = 0;
     }
     public void Execute()
     {
-        TurnSetUp();
-        void loopTurn()
+        executing++;
+        if (executing == 1)
         {
-            if (EnoughAPToPlayThisTurn())
-            {
-                StartCoroutine(ExecuteARandomCommand());
-                loopTurn();
-            }
+            Debug.Log("Execute");
+            StartCoroutine(ExecuteARandomCommand());
         }
-        loopTurn();
-        CheckForEndTurn();
     }
     public IEnumerator ExecuteARandomCommand()
     {
         yield return new WaitForSeconds(2f);
-
-        yield return new WaitForSeconds(2f);
+        randomCommand();
     }
     public void CheckForEndTurn()
     {
@@ -53,17 +49,18 @@ public class EnemyBehavior : MonoBehaviour
         BS_FSM.EndTurn();
     }
 
-    private void Command_Attack_With_Head()
-    {
-        Debug.LogWarning("Ocorre Command_Attack_With_Head");
-        //aleatoriamente escolher 1 alvo
-        Targets[] target = new Targets[1];
+    //private void Command_Attack_With_Head()
+    //{
+    //    Debug.LogWarning("Ocorre Command_Attack_With_Head");
+    //    //aleatoriamente escolher 1 alvo
+    //    Targets[] target = new Targets[1];
         
-        randomTarget(target);
-        Events.onDamageEvent.Invoke(BS_FSM.enemyCharBase, BS_FSM.enemyCharBase.head_Aura,
-                                                BS_FSM.playerCharBase, target, "atk");
+    //    randomTarget(target);
+    //    Events.onDamageEvent.Invoke(BS_FSM.enemyCharBase, BS_FSM.enemyCharBase.head_Aura,
+    //                                            BS_FSM.playerCharBase, target, "atk");
 
-    }
+    //}
+
     private void Command_Attack_With_LeftArm()
     {
         Debug.LogWarning("Ocorre Command_Attack_With_LeftArm");
@@ -183,55 +180,108 @@ public class EnemyBehavior : MonoBehaviour
     }
     private void randomCommand()
     {
-        int randomNumber = UnityEngine.Random.Range(0, 7);
+        int randomNumber = UnityEngine.Random.Range(1, 7);
         switch (randomNumber)
         {
-            case 0:
-                //checar se é um alvo válido
-                if (!BS_FSM.playerCharBase.is_head_ON)
-                {
-                    randomCommand();
-                }
-                Command_Attack_With_Head();
-                break;
             case 1:
                 if (!BS_FSM.playerCharBase.is_leftArm_ON)
                 {
-                    randomCommand();
+                    StartCoroutine(ExecuteARandomCommand());
                 }
-                Command_Attack_With_LeftArm();
+                else
+                {
+                    Command_Attack_With_LeftArm();
+                    if (EnoughAPToPlayThisTurn())
+                    {
+                        executing = 0;
+                        StartCoroutine(ExecuteARandomCommand());
+                    }
+                    else
+                    {
+                        EndTurn();
+                    }
+                }
                 break;
             case 2:
                 if (!BS_FSM.playerCharBase.is_rightArm_ON)
                 {
-                    randomCommand();
+                    StartCoroutine(ExecuteARandomCommand());
                 }
-                Command_Attack_With_RightArm();
+                else
+                {
+                    Command_Attack_With_RightArm();
+                    if (EnoughAPToPlayThisTurn())
+                    {
+                        executing = 0;
+                        StartCoroutine(ExecuteARandomCommand());
+                    }
+                    else
+                    {
+                        EndTurn();
+                    }
+                }
                 break;
             case 3:
                 //checar se é um alvo válido
                 if (!BS_FSM.playerCharBase.is_head_ON)
                 {
-                    randomCommand();
+                    StartCoroutine(ExecuteARandomCommand());
                 }
-                Command_Skill_With_Head();
+                else
+                {
+                    Command_Skill_With_Head();
+                    if (EnoughAPToPlayThisTurn())
+                    {
+                        executing = 0;
+                        StartCoroutine(ExecuteARandomCommand());
+                    }
+                    else
+                    {
+                        EndTurn();
+                    }
+                }
                 break;
             case 4:
                 if (!BS_FSM.playerCharBase.is_leftArm_ON)
                 {
-                    randomCommand();
+                    StartCoroutine(ExecuteARandomCommand());
                 }
-                Command_Skill_With_LeftArm();
+                else
+                {
+                    Command_Skill_With_LeftArm();
+                    if (EnoughAPToPlayThisTurn())
+                    {
+                        executing = 0;
+                        StartCoroutine(ExecuteARandomCommand());
+                    }
+                    else
+                    {
+                        EndTurn();
+                    }
+                }
                 break;
             case 5:
                 if (!BS_FSM.playerCharBase.is_rightArm_ON)
                 {
-                    randomCommand();
+                    StartCoroutine(ExecuteARandomCommand());
                 }
-                Command_Skill_With_RightArm();
+                else
+                {
+                    Command_Skill_With_RightArm();
+                    if (EnoughAPToPlayThisTurn())
+                    {
+                        executing = 0;
+                        StartCoroutine(ExecuteARandomCommand());
+                    }
+                    else
+                    {
+                        EndTurn();
+                    }
+                }
                 break;
             case 6:
-                Command_EndTurn();
+                executing = 0;
+                EndTurn();
                 break;
         }
     }
@@ -248,13 +298,15 @@ public class EnemyBehavior : MonoBehaviour
         void IfAuraPartEnabled(Targets t)
         {
             //se a opção existe mesmo aí testa, se não, nem faz nada.
-            if ((BS_FSM.battleSystemUI.GetAura(t, BS_FSM.enemyCharBase).skill.skillType != SkillType.none) ||
-            (BS_FSM.battleSystemUI.GetAura(t, BS_FSM.enemyCharBase).attackAPCost != 0))
+            if (BS_FSM.battleSystemUI.GetAura(t, BS_FSM.enemyCharBase).skill.skillType != SkillType.none)
             {
                 if (BS_FSM.battleSystemUI.IsAPEnough(t, BS_FSM.enemyCharBase, "skill"))
                 {
                     canPlayThisTurn = true;
                 }
+            }
+            if(BS_FSM.battleSystemUI.GetAura(t, BS_FSM.enemyCharBase).attackAPCost != 0)
+            {
                 if (BS_FSM.battleSystemUI.IsAPEnough(t, BS_FSM.enemyCharBase, "atk"))
                 {
                     canPlayThisTurn = true;

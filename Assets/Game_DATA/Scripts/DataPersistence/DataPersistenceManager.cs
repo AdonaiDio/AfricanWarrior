@@ -27,7 +27,7 @@ public class DataPersistenceManager : MonoBehaviour
     private bool EncryptionEnabled;
     [HideInInspector]
     public bool initialized = false;
-
+    //
     public static DataPersistenceManager instance { get; private set; }
 
     private void Awake()
@@ -127,7 +127,13 @@ public class DataPersistenceManager : MonoBehaviour
             Debug.LogError("Error saving data!");
         }
     }
-
+    public void DeleteJson()
+    {
+        if (DataService.DeleteData("/save.json"))
+        {
+            Debug.Log("GameData Deleted!");
+        }
+    }
     public void LoadJson()
     {
         try

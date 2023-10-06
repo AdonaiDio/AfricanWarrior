@@ -25,6 +25,7 @@ public class EnemyTurn_State : BaseState
         {
             _fsm.battleSystemUI.enemyTurnLabel.SetActive(false);
         });
+        _fsm.enemyChar.GetComponent<EnemyBehavior>().TurnSetUp();
         _fsm.enemyChar.GetComponent<EnemyBehavior>().Execute();
     }
     public override void _Update()

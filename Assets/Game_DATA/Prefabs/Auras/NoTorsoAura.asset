@@ -15,7 +15,7 @@ MonoBehaviour:
   auraName: Sem Aura De Torso
   animalType: 0
   sprite: {fileID: 21300000, guid: 397d4f26d18744349b7f9305f86db173, type: 3}
-  hp: 5
+  hp: 30
   skill:
     skillType: 0
     skillAmount: 0
@@ -25,5 +25,5 @@ MonoBehaviour:
   attack: 0
   attackAPCost: 0
   skillAPCost: 0
-  actionPointsPerTurn: 1
+  actionPointsPerTurn: 6
   auraPart: 3

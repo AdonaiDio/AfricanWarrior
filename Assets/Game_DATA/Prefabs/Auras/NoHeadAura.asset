@@ -15,11 +15,16 @@ MonoBehaviour:
   auraName: "Sem Aura De Cabe\xE7a"
   animalType: 0
   sprite: {fileID: 21300000, guid: b5b224a9470352640a1a2e5485056001, type: 3}
-  hp: 1
-  skillAPCost: 1
+  hp: 30
   skill:
-    skillType: 0
-    skillAmount: 0
-    targets: 0
+    skillType: 1
+    skillAmount: 10
+    targets: 16
     selfTarget: 0
-  description: "N\xE3o h\xE1 aura na cabe\xE7a."
+  description: "causa 0 de dano ao alvo. N\xE3o h\xE1 aura na cabe\xE7a. Apenas o
+    poder mental do xam\xE3."
+  attack: 0
+  attackAPCost: 0
+  skillAPCost: 4
+  actionPointsPerTurn: 0
+  auraPart: 0

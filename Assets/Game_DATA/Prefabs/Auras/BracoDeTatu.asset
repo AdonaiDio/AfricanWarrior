@@ -15,14 +15,14 @@ MonoBehaviour:
   auraName: "Bra\xE7o De Tatu"
   animalType: 2
   sprite: {fileID: 21300000, guid: c6a51380d0ef73241b51e0b0d7893ca0, type: 3}
-  hp: 60
+  hp: 50
   skill:
     skillType: 1
-    skillAmount: 5
+    skillAmount: 10
     targets: 15
     selfTarget: 0
-  description: Causa 5 de dano Geral em todas as partes do inimigo.
-  attack: 10
+  description: Causa 10 de dano Geral em todas as partes do inimigo.
+  attack: 12
   attackAPCost: 1
   skillAPCost: 3
   actionPointsPerTurn: 0

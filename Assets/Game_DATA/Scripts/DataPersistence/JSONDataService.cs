@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class JsonDataService : IDataService
 {
-
     public bool SaveData<T>(string RelativePath, T Data, bool Encrypted)
     {
         string path = Application.persistentDataPath + RelativePath;
@@ -105,4 +104,19 @@ public class JsonDataService : IDataService
     //    debug.log($"decrypted result (if the following is not legible, probably wrong key or iv): {result}");
     //    return jsonconvert.deserializeobject<t>(result);
     //}
+    public bool DeleteData(string RelativePath)
+    {
+        string path = Application.persistentDataPath + RelativePath;
+        if (File.Exists(path))
+        {
+            Debug.Log("Data exists. Deleting old file!");
+            File.Delete(path);
+            return true;
+        }
+        else
+        {
+            Debug.Log("Data dosen't exists.");
+            return false;
+        }
+    }
 }
