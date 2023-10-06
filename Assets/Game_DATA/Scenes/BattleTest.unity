@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd495372657f05249ba795da9a3e24ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterScriptableObject: {fileID: 0}
+  characterScriptableObject: {fileID: 11400000, guid: b6d4593b167006a4aaeb3071b50fbe41, type: 2}
   characterName: 
   actionPoints: 0
   head_Aura: {fileID: 0}
@@ -2452,7 +2452,6 @@ MonoBehaviour:
   position1: {fileID: 1036544893}
   position2: {fileID: 1152091120}
   playerScriptableObject: {fileID: 11400000, guid: 18c9f889b93f33347b8bdfc6ff5d5592, type: 2}
-  enemyScriptableObject: {fileID: 11400000, guid: b6d4593b167006a4aaeb3071b50fbe41, type: 2}
 --- !u!4 &401944774
 Transform:
   m_ObjectHideFlags: 0

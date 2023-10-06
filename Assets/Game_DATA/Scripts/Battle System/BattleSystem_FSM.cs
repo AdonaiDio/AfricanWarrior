@@ -29,7 +29,7 @@ public class BattleSystem_FSM : FiniteStateMachine
     //dados dos personagens dessa batalha.
     //Esses dados são colhidos de outra cena quando inicia combate
     public Character_ScriptableObject playerScriptableObject;
-    public Character_ScriptableObject enemyScriptableObject;
+    //public Character_ScriptableObject enemyScriptableObject;
     //Dados do jogo
     private DataPersistenceManager dataPersistence;
 
@@ -81,7 +81,7 @@ public class BattleSystem_FSM : FiniteStateMachine
 
         enemyCharBase = enemyChar.GetComponent<Character_Base>();
 
-        enemyCharBase.characterScriptableObject = enemyScriptableObject;
+        //enemyCharBase.characterScriptableObject = enemyScriptableObject;
         enemyCharBase.SetCharacterAttributes();
         playerChar.SetActive(true);
         enemyChar.SetActive(true);
