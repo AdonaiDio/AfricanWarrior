@@ -18,12 +18,12 @@ MonoBehaviour:
   hp: 20
   skill:
     skillType: 2
-    skillAmount: 5
+    skillAmount: 2
     targets: 6
     selfTarget: 0
   description: "cura 5 bra\xE7os"
   attack: 0
   attackAPCost: 0
-  skillAPCost: 2
+  skillAPCost: 3
   actionPointsPerTurn: 0
   auraPart: 0

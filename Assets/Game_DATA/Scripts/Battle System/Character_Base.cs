@@ -261,7 +261,10 @@ public class Character_Base : MonoBehaviour
 
                 }));
             }
-            _allAuraPartsListStrings = _allAuraPartsListStrings.Remove(_allAuraPartsListStrings.Length - 2)+" ";
+            if (_allAuraPartsListStrings != "")
+            {
+                _allAuraPartsListStrings = _allAuraPartsListStrings.Remove(_allAuraPartsListStrings.Length - 2)+" ";
+            }
             Debug.Log(acting_charBase.characterName +" usou "+ acting_auraSO.auraName +" que causou "+ acting_auraSO.skill.skillAmount +" de dano no " + _allAuraPartsListStrings + " do " + target_charBase.characterName);
         }
         else//atk
@@ -279,7 +282,7 @@ public class Character_Base : MonoBehaviour
     #region Damage Skill
     public IEnumerator TakeDamageSkillAnim(GenericAura_ScriptableObject auraSO, Targets[] target_auraPart_List, Action action)
     {
-        animator.Play("bonecoTeste_atk");
+        animator.Play("hit");
 
         yield return new WaitWhile(() =>
         {
@@ -294,34 +297,7 @@ public class Character_Base : MonoBehaviour
     {
         List<GameObject> _targetGOs = new List<GameObject>();
         List<GameObject> _main_targetGOs = new List<GameObject>();
-        for (int i = 0; i < target_auraPart_List.Length; i++)
-        {
-            if (target_auraPart_List[i] == Targets.Head)
-            {
-                _targetGOs.Add(transform.GetChild(0).gameObject);
-                _main_targetGOs.Add(transform.GetChild(0).gameObject);
-                _targetGOs.Add(transform.GetChild(1).gameObject);
-            }
-            else if (target_auraPart_List[i] == Targets.LeftArm)
-            {
-                _targetGOs.Add(transform.GetChild(9).gameObject);
-                _targetGOs.Add(transform.GetChild(10).gameObject);
-                _main_targetGOs.Add(transform.GetChild(10).gameObject);
-                _targetGOs.Add(transform.GetChild(11).gameObject);
-            }
-            else if (target_auraPart_List[i] == Targets.RightArm)
-            {
-                _targetGOs.Add(transform.GetChild(2).gameObject);
-                _targetGOs.Add(transform.GetChild(3).gameObject);
-                _main_targetGOs.Add(transform.GetChild(3).gameObject);
-                _targetGOs.Add(transform.GetChild(4).gameObject);
-            }
-            else if (target_auraPart_List[i] == Targets.Torso)
-            {
-                _targetGOs.Add(transform.GetChild(8).gameObject);
-                _main_targetGOs.Add(transform.GetChild(8).gameObject);
-            }
-        }
+        SearchTargetGameObjects(target_auraPart_List, _targetGOs, _main_targetGOs);
         foreach (GameObject go in _targetGOs)
         {
             LeanTween.color(go, Color.red, 0.7f).setEaseOutExpo().setOnComplete(() =>
@@ -346,9 +322,10 @@ public class Character_Base : MonoBehaviour
         }
     }
 
+
     public IEnumerator GiveDamageSkillAnim(Action action)
     {
-        animator.Play("bonecoTeste_atk");
+        animator.Play("attack");
         yield return new WaitWhile(() => {
             return animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f;
         });
@@ -359,7 +336,7 @@ public class Character_Base : MonoBehaviour
     #region Attack
     public IEnumerator TakeAttackAnim(Character_Base target_charBase, GenericAura_ScriptableObject auraSO, Targets[] target_auraPart_List, Action action)
     {
-        animator.Play("bonecoTeste_atk");
+        animator.Play("hit");
         yield return new WaitWhile(()=> { 
             return animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f; 
         });
@@ -370,7 +347,7 @@ public class Character_Base : MonoBehaviour
     }
     public IEnumerator GiveAttackAnim(Action action)
     {
-        animator.Play("bonecoTeste_atk");
+        animator.Play("attack");
         yield return new WaitWhile(() => {
             return animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f;
         });
@@ -385,34 +362,8 @@ public class Character_Base : MonoBehaviour
         {
             List<GameObject> _targetGOs = new List<GameObject>();
             List<GameObject> _main_targetGOs = new List<GameObject>();
-            for (int i = 0; i < target_auraPart_List.Length; i++)
-            {
-                if (target_auraPart_List[i] == Targets.Head)
-                {
-                    _targetGOs.Add(transform.GetChild(0).gameObject);
-                    _main_targetGOs.Add(transform.GetChild(0).gameObject);
-                    _targetGOs.Add(transform.GetChild(1).gameObject);
-                }
-                else if (target_auraPart_List[i] == Targets.LeftArm)
-                {
-                    _targetGOs.Add(transform.GetChild(9).gameObject);
-                    _targetGOs.Add(transform.GetChild(10).gameObject);
-                    _main_targetGOs.Add(transform.GetChild(10).gameObject);
-                    _targetGOs.Add(transform.GetChild(11).gameObject);
-                }
-                else if (target_auraPart_List[i] == Targets.RightArm)
-                {
-                    _targetGOs.Add(transform.GetChild(2).gameObject);
-                    _targetGOs.Add(transform.GetChild(3).gameObject);
-                    _main_targetGOs.Add(transform.GetChild(3).gameObject);
-                    _targetGOs.Add(transform.GetChild(4).gameObject);
-                }
-                else if (target_auraPart_List[i] == Targets.Torso)
-                {
-                    _targetGOs.Add(transform.GetChild(8).gameObject);
-                    _main_targetGOs.Add(transform.GetChild(8).gameObject);
-                }
-            }
+            SearchTargetGameObjects(target_auraPart_List, _targetGOs, _main_targetGOs);
+
             foreach (GameObject go in _targetGOs)
             {
                 LeanTween.color(go, Color.cyan, 0.7f).setEaseOutExpo().setOnComplete(()=> {
@@ -429,12 +380,127 @@ public class Character_Base : MonoBehaviour
     }
     public IEnumerator GiveHealSkillAnim(Action action)
     {
-        animator.Play("bonecoTeste_atk");
-        yield return new WaitWhile(() => {
-            return animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f;
-        });
+        //animator.Play("bonecoTeste_atk");
+        //yield return new WaitWhile(() => {
+        //    return animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f;
+        //});
         yield return new WaitForSeconds(1f);
         action();
+    }
+    private void SearchTargetGameObjects(Targets[] target_auraPart_List, List<GameObject> _targetGOs, List<GameObject> _main_targetGOs)
+    {
+        for (int i = 0; i < target_auraPart_List.Length; i++)
+        {
+            if (target_auraPart_List[i] == Targets.Head)
+            {
+                foreach (Transform child in transform)
+                {
+                    if (child.GetComponent<SelectPart>() != null
+                        && child.GetComponent<SelectPart>().aura == AuraParts.Head)
+                    {
+                        _targetGOs.Add(child.gameObject);
+                        bool _main_gotOne = false;
+                        foreach (GameObject go in _main_targetGOs)
+                        {
+                            if (go.GetComponent<SelectPart>() != null
+                                && go.GetComponent<SelectPart>().aura == AuraParts.Head)
+                            {
+                                _main_gotOne = true;
+                            }
+                        }
+                        if (_main_gotOne == false)
+                        {
+                            _main_targetGOs.Add(child.gameObject);
+                        }
+                    }
+                }
+                //_targetGOs.Add(transform.GetChild(0).gameObject);
+                //_main_targetGOs.Add(transform.GetChild(0).gameObject);
+                //_targetGOs.Add(transform.GetChild(1).gameObject);
+            }
+            if (target_auraPart_List[i] == Targets.LeftArm)
+            {
+                foreach (Transform child in transform)
+                {
+                    if (child.GetComponent<SelectPart>() != null
+                        && child.GetComponent<SelectPart>().aura == AuraParts.LeftArm)
+                    {
+                        _targetGOs.Add(child.gameObject);
+                        bool _main_gotOne = false;
+                        foreach (GameObject go in _main_targetGOs)
+                        {
+                            if (go.GetComponent<SelectPart>() != null
+                                && go.GetComponent<SelectPart>().aura == AuraParts.LeftArm)
+                            {
+                                _main_gotOne = true;
+                            }
+                        }
+                        if (_main_gotOne == false)
+                        {
+                            _main_targetGOs.Add(child.gameObject);
+                        }
+                    }
+                }
+                //_targetGOs.Add(transform.GetChild(9).gameObject);
+                //_targetGOs.Add(transform.GetChild(10).gameObject);
+                //_main_targetGOs.Add(transform.GetChild(10).gameObject);
+                //_targetGOs.Add(transform.GetChild(11).gameObject);
+            }
+            if (target_auraPart_List[i] == Targets.RightArm)
+            {
+                foreach (Transform child in transform)
+                {
+                    if (child.GetComponent<SelectPart>() != null
+                        && child.GetComponent<SelectPart>().aura == AuraParts.RightArm)
+                    {
+                        _targetGOs.Add(child.gameObject);
+                        bool _main_gotOne = false;
+                        foreach (GameObject go in _main_targetGOs)
+                        {
+                            if (go.GetComponent<SelectPart>() != null
+                                && go.GetComponent<SelectPart>().aura == AuraParts.RightArm)
+                            {
+                                _main_gotOne = true;
+                            }
+                        }
+                        if (_main_gotOne == false)
+                        {
+                            _main_targetGOs.Add(child.gameObject);
+                        }
+                    }
+                }
+                //_targetGOs.Add(transform.GetChild(2).gameObject);
+                //_targetGOs.Add(transform.GetChild(3).gameObject);
+                //_main_targetGOs.Add(transform.GetChild(3).gameObject);
+                //_targetGOs.Add(transform.GetChild(4).gameObject);
+            }
+            if (target_auraPart_List[i] == Targets.Torso)
+            {
+                foreach (Transform child in transform)
+                {
+                    if (child.GetComponent<SelectPart>() != null
+                        && child.GetComponent<SelectPart>().aura == AuraParts.Torso)
+                    {
+                        _targetGOs.Add(child.gameObject);
+                        bool _main_gotOne = false;
+                        foreach (GameObject go in _main_targetGOs)
+                        {
+                            if (go.GetComponent<SelectPart>() != null
+                                && go.GetComponent<SelectPart>().aura == AuraParts.Torso)
+                            {
+                                _main_gotOne = true;
+                            }
+                        }
+                        if (_main_gotOne == false)
+                        {
+                            _main_targetGOs.Add(child.gameObject);
+                        }
+                    }
+                }
+                //_targetGOs.Add(transform.GetChild(8).gameObject);
+                //_main_targetGOs.Add(transform.GetChild(8).gameObject);
+            }
+        }
     }
     #endregion
     #endregion

@@ -21,8 +21,8 @@ MonoBehaviour:
     skillAmount: 10
     targets: 16
     selfTarget: 0
-  description: "causa 0 de dano ao alvo. N\xE3o h\xE1 aura na cabe\xE7a. Apenas o
-    poder mental do xam\xE3."
+  description: "causa 10 de dano ao alvo. N\xE3o h\xE1 aura na cabe\xE7a. Apenas
+    o poder mental do xam\xE3."
   attack: 0
   attackAPCost: 0
   skillAPCost: 4

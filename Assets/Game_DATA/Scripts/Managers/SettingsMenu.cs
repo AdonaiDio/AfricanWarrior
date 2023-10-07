@@ -14,6 +14,7 @@ public class SettingsMenu : MonoBehaviour
     public TMP_Dropdown resolutionDropdown;
 
     Resolution[] resolutions;
+    public Toggle toggleFullScreen;
 
     private bool activeLocalSelector = false;
     private void Start()
@@ -54,10 +55,10 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.value = PlayerPrefs.GetInt("currentResolutionIndex");
         resolutionDropdown.RefreshShownValue();
     }
-    public void SetResolution(int resolutionIndex)
+    public void SetResolution()
     {
-        Resolution resolution = resolutions[resolutionIndex];
-        PlayerPrefs.SetInt("currentResolutionIndex", resolutionIndex);
+        Resolution resolution = resolutions[resolutionDropdown.value];
+        PlayerPrefs.SetInt("currentResolutionIndex", resolutionDropdown.value);
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
     #endregion
@@ -67,10 +68,10 @@ public class SettingsMenu : MonoBehaviour
     {
         Screen.fullScreen = (PlayerPrefs.GetInt("fullscreenValue") > 0 ? true : false);
     }
-    public void SetFullscreen(bool isFullscreen)
+    public void SetFullscreen()
     {
-        Screen.fullScreen = isFullscreen;
-        PlayerPrefs.SetInt("fullscreenValue", (isFullscreen ? 1 : 0));
+        Screen.fullScreen = toggleFullScreen.isOn;
+        PlayerPrefs.SetInt("fullscreenValue", (toggleFullScreen.isOn ? 1 : 0));
     }
     #endregion
 

@@ -29,9 +29,11 @@ public class DataPersistenceManager : MonoBehaviour
     public bool initialized = false;
     //
     public static DataPersistenceManager instance { get; private set; }
+    private GameManagerScript gameManager;
 
     private void Awake()
     {
+        gameManager = FindObjectOfType<GameManagerScript>();
         if (instance == null)
         {
             instance = this;
@@ -42,7 +44,10 @@ public class DataPersistenceManager : MonoBehaviour
             Debug.LogError("Encontrou mais de uma Data Persistence Manager na cena");
             Destroy(this);
         }
-        GetAllGameAuras();
+        if (allGameAurasList.Count == 0)
+        {
+            GetAllGameAuras();
+        }
         initialized = true;
     }
     private void Start()
@@ -51,46 +56,49 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void GetAllGameAuras()
     {
-        string aurasFolderPath = "Assets/Game_DATA/Prefabs/Auras";
-        DirectoryInfo dir = new DirectoryInfo(aurasFolderPath);
-        FileInfo[] info = dir.GetFiles("*.*");
+        #region old
+        //string aurasFolderPath = "Assets/Game_DATA/Prefabs/Auras";
+        //DirectoryInfo dir = new DirectoryInfo(aurasFolderPath);
+        //FileInfo[] info = dir.GetFiles("*.*");
 
-        //limpar a lista para evitar duplicatas
-        allGameAurasList = new List<ScriptableObject>();
-        foreach (FileInfo f in info)
-        {
-            if (f.Extension == ".asset")
-            {
-                if (AssetDatabase.LoadAssetAtPath(
-                    aurasFolderPath + "/" + f.Name,
-                    typeof(ScriptableObject)).GetType()
-                    == typeof(HeadAura_ScriptableObject))
-                {
-                    allGameAurasList.Add((HeadAura_ScriptableObject)AssetDatabase.LoadAssetAtPath(aurasFolderPath + "/" + f.Name, typeof(HeadAura_ScriptableObject)));
-                }
-                else if (AssetDatabase.LoadAssetAtPath(
-                    aurasFolderPath + "/" + f.Name,
-                    typeof(ScriptableObject)).GetType()
-                    == typeof(LeftArmAura_ScriptableObject))
-                {
-                    allGameAurasList.Add((LeftArmAura_ScriptableObject)AssetDatabase.LoadAssetAtPath(aurasFolderPath + "/" + f.Name, typeof(LeftArmAura_ScriptableObject)));
-                }
-                else if (AssetDatabase.LoadAssetAtPath(
-                    aurasFolderPath + "/" + f.Name,
-                    typeof(ScriptableObject)).GetType()
-                    == typeof(RightArmAura_ScriptableObject))
-                {
-                    allGameAurasList.Add((RightArmAura_ScriptableObject)AssetDatabase.LoadAssetAtPath(aurasFolderPath + "/" + f.Name, typeof(RightArmAura_ScriptableObject)));
-                }
-                else if (AssetDatabase.LoadAssetAtPath(
-                   aurasFolderPath + "/" + f.Name,
-                   typeof(ScriptableObject)).GetType()
-                   == typeof(TorsoAura_ScriptableObject))
-                {
-                    allGameAurasList.Add((TorsoAura_ScriptableObject)AssetDatabase.LoadAssetAtPath(aurasFolderPath + "/" + f.Name, typeof(TorsoAura_ScriptableObject)));
-                }
-            }
-        }
+        ////limpar a lista para evitar duplicatas
+        //allGameAurasList = new List<ScriptableObject>();
+        //foreach (FileInfo f in info)
+        //{
+        //    if (f.Extension == ".asset")
+        //    {
+        //        if (AssetDatabase.LoadAssetAtPath(
+        //            aurasFolderPath + "/" + f.Name,
+        //            typeof(ScriptableObject)).GetType()
+        //            == typeof(HeadAura_ScriptableObject))
+        //        {
+        //            allGameAurasList.Add((HeadAura_ScriptableObject)AssetDatabase.LoadAssetAtPath(aurasFolderPath + "/" + f.Name, typeof(HeadAura_ScriptableObject)));
+        //        }
+        //        else if (AssetDatabase.LoadAssetAtPath(
+        //            aurasFolderPath + "/" + f.Name,
+        //            typeof(ScriptableObject)).GetType()
+        //            == typeof(LeftArmAura_ScriptableObject))
+        //        {
+        //            allGameAurasList.Add((LeftArmAura_ScriptableObject)AssetDatabase.LoadAssetAtPath(aurasFolderPath + "/" + f.Name, typeof(LeftArmAura_ScriptableObject)));
+        //        }
+        //        else if (AssetDatabase.LoadAssetAtPath(
+        //            aurasFolderPath + "/" + f.Name,
+        //            typeof(ScriptableObject)).GetType()
+        //            == typeof(RightArmAura_ScriptableObject))
+        //        {
+        //            allGameAurasList.Add((RightArmAura_ScriptableObject)AssetDatabase.LoadAssetAtPath(aurasFolderPath + "/" + f.Name, typeof(RightArmAura_ScriptableObject)));
+        //        }
+        //        else if (AssetDatabase.LoadAssetAtPath(
+        //           aurasFolderPath + "/" + f.Name,
+        //           typeof(ScriptableObject)).GetType()
+        //           == typeof(TorsoAura_ScriptableObject))
+        //        {
+        //            allGameAurasList.Add((TorsoAura_ScriptableObject)AssetDatabase.LoadAssetAtPath(aurasFolderPath + "/" + f.Name, typeof(TorsoAura_ScriptableObject)));
+        //        }
+        //    }
+        //}
+        #endregion
+        allGameAurasList = gameManager.allGameAurasList;
     }
     public void ToggleEncyption(bool EncryptionEnabled)
     {

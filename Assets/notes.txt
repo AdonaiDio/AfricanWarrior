@@ -59,3 +59,10 @@ Tela de fim de jogo( Vitoria/ Derrota)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 Testar o jogo todo!
+
+
+Não está testando se pode usar o comando (por AP) 
+antes de usar. todo teste vem depois. e está errado!!
+
+ou executo uma vez ignoro os testes.
+ou tento arrumar isso.

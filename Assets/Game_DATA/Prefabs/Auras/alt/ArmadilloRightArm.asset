@@ -18,12 +18,12 @@ MonoBehaviour:
   hp: 20
   skill:
     skillType: 1
-    skillAmount: 10
+    skillAmount: 5
     targets: 16
     selfTarget: 0
   description: causa 10  de dano ao alvo
-  attack: 5
-  attackAPCost: 1
-  skillAPCost: 2
+  attack: 2
+  attackAPCost: 3
+  skillAPCost: 4
   actionPointsPerTurn: 0
   auraPart: 2

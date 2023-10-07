@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     private BattleSystem_FSM BS_FSM;
-    private int executing = 0;
+    private bool isExecuting = false;
 
     private void OnEnable()
     {
@@ -24,12 +24,11 @@ public class EnemyBehavior : MonoBehaviour
     {
         BS_FSM.ResetAP(BS_FSM.enemyCharBase);
         BS_FSM.battleSystemUI.selected_Acting_Char = BS_FSM.enemyCharBase;
-        executing = 0;
+        isExecuting = false;
     }
     public void Execute()
     {
-        executing++;
-        if (executing == 1)
+        if (isExecuting == false)
         {
             Debug.Log("Execute");
             StartCoroutine(ExecuteARandomCommand());
@@ -123,14 +122,20 @@ public class EnemyBehavior : MonoBehaviour
         {
             _auraPartsList.Add(Targets.Torso);
         }
-        //criar uma array pois é o formato que o event recebe
-        Targets[] _target_auraParts = new Targets[_auraPartsList.Count];//array do tamanho de partes targets
-
-        //baseado nas partes alvo da auraSO, vamos deixar somente as auras corretas
-        for (int i = 0; i < _auraPartsList.Count; i++)
+        Targets[] _target_auraParts = new Targets[_auraPartsList.Count > 0? _auraPartsList.Count : 1];
+        if (_auraPartsList.Count > 0)
         {
-            _target_auraParts[i] = _auraPartsList[i];
+            //baseado nas partes alvo da auraSO, vamos deixar somente as auras corretas
+            for (int i = 0; i < _auraPartsList.Count; i++)
+            {
+                _target_auraParts[i] = _auraPartsList[i];
+            }
         }
+        else if (_selected_acting_auraSO.skill.targets.HasFlag(Targets.Target))
+        {
+            randomTarget(_target_auraParts);
+        }
+
         if (_selected_acting_auraSO.skill.skillType == SkillType.Damage)
         {
             Events.onDamageEvent.Invoke(BS_FSM.enemyCharBase, _selected_acting_auraSO,
@@ -178,112 +183,156 @@ public class EnemyBehavior : MonoBehaviour
                 break;
         }
     }
+
+    //private void randomCommand()
+    //{
+    //    if (EnoughAPToPlayThisTurn())//caso não tenha ap suficiente endturn()
+    //    {
+    //        int randomNumber = UnityEngine.Random.Range(1, 7);
+    //        switch (randomNumber)
+    //        {
+    //            case 1:
+    //                if (!BS_FSM.playerCharBase.is_leftArm_ON)
+    //                {
+    //                    StartCoroutine(ExecuteARandomCommand());
+    //                }
+    //                else
+    //                {
+    //                    Command_Attack_With_LeftArm();
+    //                    if (EnoughAPToPlayThisTurn())
+    //                    {
+    //                        StartCoroutine(ExecuteARandomCommand());
+    //                        isExecuting = false;
+    //                    }
+    //                    else
+    //                    {
+    //                        EndTurn();
+    //                        isExecuting = false;
+    //                    }
+    //                }
+    //                break;
+    //            case 2:
+    //                if (!BS_FSM.playerCharBase.is_rightArm_ON)
+    //                {
+    //                    StartCoroutine(ExecuteARandomCommand());
+    //                }
+    //                else
+    //                {
+    //                    Command_Attack_With_RightArm();
+    //                    if (EnoughAPToPlayThisTurn())
+    //                    {
+    //                        StartCoroutine(ExecuteARandomCommand());
+    //                        isExecuting = false;
+    //                    }
+    //                    else
+    //                    {
+    //                        EndTurn();
+    //                        isExecuting = false;
+    //                    }
+    //                }
+    //                break;
+    //            case 3:
+    //                //checar se é um alvo válido
+    //                if (!BS_FSM.playerCharBase.is_head_ON)
+    //                {
+    //                    StartCoroutine(ExecuteARandomCommand());
+    //                }
+    //                else
+    //                {
+    //                    Command_Skill_With_Head();
+    //                    if (EnoughAPToPlayThisTurn())
+    //                    {
+    //                        StartCoroutine(ExecuteARandomCommand());
+    //                        isExecuting = false;
+    //                    }
+    //                    else
+    //                    {
+    //                        EndTurn();
+    //                        isExecuting = false;
+    //                    }
+    //                }
+    //                break;
+    //            case 4:
+    //                if (!BS_FSM.playerCharBase.is_leftArm_ON)
+    //                {
+    //                    StartCoroutine(ExecuteARandomCommand());
+    //                }
+    //                else
+    //                {
+    //                    Command_Skill_With_LeftArm();
+    //                    if (EnoughAPToPlayThisTurn())
+    //                    {
+    //                        StartCoroutine(ExecuteARandomCommand());
+    //                        isExecuting = false;
+    //                    }
+    //                    else
+    //                    {
+    //                        EndTurn();
+    //                        isExecuting = false;
+    //                    }
+    //                }
+    //                break;
+    //            case 5:
+    //                if (!BS_FSM.playerCharBase.is_rightArm_ON)
+    //                {
+    //                    StartCoroutine(ExecuteARandomCommand());
+    //                }
+    //                else
+    //                {
+    //                    Command_Skill_With_RightArm();
+    //                    if (EnoughAPToPlayThisTurn())
+    //                    {
+    //                        StartCoroutine(ExecuteARandomCommand());
+    //                        isExecuting = false;
+    //                    }
+    //                    else
+    //                    {
+    //                        EndTurn();
+    //                        isExecuting = false;
+    //                    }
+    //                }
+    //                break;
+    //            case 6:
+    //                EndTurn();
+    //                isExecuting = false;
+    //                break;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        EndTurn();
+    //        isExecuting = false;
+    //    }
+    //}
+
     private void randomCommand()
     {
-        int randomNumber = UnityEngine.Random.Range(1, 7);
-        switch (randomNumber)
+        List<Action> _possibleActions = new List<Action>();
+        _possibleActions.Add(EndTurn);
+
+        if (BS_FSM.enemyCharBase.is_head_ON)
         {
-            case 1:
-                if (!BS_FSM.playerCharBase.is_leftArm_ON)
-                {
-                    StartCoroutine(ExecuteARandomCommand());
-                }
-                else
-                {
-                    Command_Attack_With_LeftArm();
-                    if (EnoughAPToPlayThisTurn())
-                    {
-                        executing = 0;
-                        StartCoroutine(ExecuteARandomCommand());
-                    }
-                    else
-                    {
-                        EndTurn();
-                    }
-                }
-                break;
-            case 2:
-                if (!BS_FSM.playerCharBase.is_rightArm_ON)
-                {
-                    StartCoroutine(ExecuteARandomCommand());
-                }
-                else
-                {
-                    Command_Attack_With_RightArm();
-                    if (EnoughAPToPlayThisTurn())
-                    {
-                        executing = 0;
-                        StartCoroutine(ExecuteARandomCommand());
-                    }
-                    else
-                    {
-                        EndTurn();
-                    }
-                }
-                break;
-            case 3:
-                //checar se é um alvo válido
-                if (!BS_FSM.playerCharBase.is_head_ON)
-                {
-                    StartCoroutine(ExecuteARandomCommand());
-                }
-                else
-                {
-                    Command_Skill_With_Head();
-                    if (EnoughAPToPlayThisTurn())
-                    {
-                        executing = 0;
-                        StartCoroutine(ExecuteARandomCommand());
-                    }
-                    else
-                    {
-                        EndTurn();
-                    }
-                }
-                break;
-            case 4:
-                if (!BS_FSM.playerCharBase.is_leftArm_ON)
-                {
-                    StartCoroutine(ExecuteARandomCommand());
-                }
-                else
-                {
-                    Command_Skill_With_LeftArm();
-                    if (EnoughAPToPlayThisTurn())
-                    {
-                        executing = 0;
-                        StartCoroutine(ExecuteARandomCommand());
-                    }
-                    else
-                    {
-                        EndTurn();
-                    }
-                }
-                break;
-            case 5:
-                if (!BS_FSM.playerCharBase.is_rightArm_ON)
-                {
-                    StartCoroutine(ExecuteARandomCommand());
-                }
-                else
-                {
-                    Command_Skill_With_RightArm();
-                    if (EnoughAPToPlayThisTurn())
-                    {
-                        executing = 0;
-                        StartCoroutine(ExecuteARandomCommand());
-                    }
-                    else
-                    {
-                        EndTurn();
-                    }
-                }
-                break;
-            case 6:
-                executing = 0;
-                EndTurn();
-                break;
+            _possibleActions.Add(Command_Skill_With_Head);
         }
+        
+        if (BS_FSM.enemyCharBase.is_leftArm_ON)
+        {
+            _possibleActions.Add(Command_Attack_With_LeftArm);
+            _possibleActions.Add(Command_Skill_With_LeftArm);
+        }
+        
+        if (BS_FSM.enemyCharBase.is_rightArm_ON)
+        {
+            _possibleActions.Add(Command_Attack_With_RightArm);
+            _possibleActions.Add(Command_Skill_With_RightArm);
+        }
+
+        if (EnoughAPToPlayThisTurn())//caso não tenha ap suficiente endturn()
+        {
+            int randomNumber = UnityEngine.Random.Range(0, _possibleActions.Count);
+            _possibleActions[randomNumber].Invoke();
+        }
+
     }
 
     public bool EnoughAPToPlayThisTurn()

@@ -28,7 +28,7 @@ public class MapManagerScript : MonoBehaviour
         
         SpawnOnMapPoint(mapPoints[dataPersistence.mapPointPosition_ID]);
         currentPoint = mapPoints[dataPersistence.mapPointPosition_ID];
-
+        SoundManager.instance.PlayMusic(SoundManager.instance.musics[1]);
     }
 
     public void CheckPossibleMoviment(MapPoint mapPoint)

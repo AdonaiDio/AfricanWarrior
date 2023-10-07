@@ -7,6 +7,7 @@ using System;
 
 public class BattleSystemUI : MonoBehaviour
 {
+    public GameObject sairDaBatalha;
     private BattleSystem_FSM BS_FSM;
     //Turn States Texts
     public GameObject wonUI;
@@ -162,24 +163,18 @@ public class BattleSystemUI : MonoBehaviour
                 //para retornar o valor ao personagem correto
                 bool playerIsTarget = selected_Acting_Char == BS_FSM.playerCharBase ? is_ActingChar_SelfTarget : !is_ActingChar_SelfTarget;
 
-                foreach (Targets auraPart in _auraPartsList)
+                //
+                if (_selected_acting_aura.skill.targets > 0) //é válido
                 {
-                    if (selected_Acting_AuraPart == auraPart)
+                    if (_selected_acting_aura.skill.targets.HasFlag(Targets.Target))
                     {
-                        //
-                        if (_selected_acting_aura.skill.targets > 0) //é válido
-                        {
-                            if (_selected_acting_aura.skill.targets.HasFlag(Targets.Target))
-                            {
-                                TurnStep _turnStep = playerIsTarget ? TurnStep.SelectPlayer : TurnStep.SelectEnemy;
-                                Events.onTurnStepChange.Invoke(_turnStep);
-                            }
-                            else
-                            {
-                                Events.onTurnStepChange.Invoke(TurnStep.Resolve);
-                                SkillMultiTargetResolve(_selected_acting_aura);
-                            }
-                        }
+                        TurnStep _turnStep = playerIsTarget ? TurnStep.SelectPlayer : TurnStep.SelectEnemy;
+                        Events.onTurnStepChange.Invoke(_turnStep);
+                    }
+                    else
+                    {
+                        Events.onTurnStepChange.Invoke(TurnStep.Resolve);
+                        SkillMultiTargetResolve(_selected_acting_aura);
                     }
                 }
             }

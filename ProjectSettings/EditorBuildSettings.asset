@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Game_DATA/Scenes/Character_Menu.unity
     guid: 9375f34c8770a43448dbe2afe771e4b2
   - enabled: 1
-    path: Assets/Game_DATA/Scenes/BattleTest.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Game_DATA/Scenes/Armadillo_Battle.unity
+    guid: 7950aed338e7c224793ec901f8eda52e
+  - enabled: 1
+    path: Assets/Game_DATA/Scenes/Manutencao.unity
+    guid: ec66094019f794f468e82c538c24bfd0
   m_configObjects: {}

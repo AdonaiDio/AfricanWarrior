@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BattleSystem_FSM : FiniteStateMachine
 {
+    public int mapIndex = 0;
     [SerializeField]private string _currentState;
     public BattleSystemUI battleSystemUI;
     //setup states
@@ -23,7 +24,7 @@ public class BattleSystem_FSM : FiniteStateMachine
     [HideInInspector] public Character_Base enemyCharBase;
 
     //prefab for char spawn
-    public GameObject pf_characterBattle;
+    //public GameObject pf_characterBattle;
     public Transform position1;
     public Transform position2;
     //dados dos personagens dessa batalha.
@@ -32,6 +33,7 @@ public class BattleSystem_FSM : FiniteStateMachine
     public Character_ScriptableObject enemyScriptableObject;
     //Dados do jogo
     private DataPersistenceManager dataPersistence;
+    private GameManagerScript gameManager;
 
 
     private void OnEnable()
@@ -49,6 +51,7 @@ public class BattleSystem_FSM : FiniteStateMachine
     private void Awake()
     {
         dataPersistence = FindObjectOfType<DataPersistenceManager>();
+        gameManager = FindObjectOfType<GameManagerScript>();
         battleSystemUI = GetComponent<BattleSystemUI>();
 
         startBattleState = new StartBattle_State(this);
@@ -56,6 +59,7 @@ public class BattleSystem_FSM : FiniteStateMachine
         enemyTurnState = new EnemyTurn_State(this);
         wonState = new Won_State(this);
         lostState = new Lost_State(this);
+
     }
 
     protected override BaseState GetInitialState()
@@ -64,6 +68,7 @@ public class BattleSystem_FSM : FiniteStateMachine
     }
 
     public bool SetUpBattlefield() {
+        SoundManager.instance.PlayMusic(SoundManager.instance.musics[0]);
         //configura tudo do player
         //playerChar = Instantiate(pf_characterBattle, position1.position, Quaternion.identity);
 
@@ -205,30 +210,46 @@ public class BattleSystem_FSM : FiniteStateMachine
     {
         if (playerCharBase.torsoHp <= 0)
         {
+            SoundManager.instance.StopMusic();
+            SoundManager.instance.PlaySFX(SoundManager.instance.sfxs[0]);
             //Events.onLostBattleEvent.Invoke();
             battleSystemUI.lostUI.SetActive(true);
+            OnLose();
             ChangeState(lostState);
+            battleSystemUI.sairDaBatalha.SetActive(true);
             return true;
         }
         else if (playerCharBase.headHp <= 0 && playerCharBase.leftArmHp <= 0 && playerCharBase.rightArmHp <= 0)
         {
+            SoundManager.instance.StopMusic();
+            SoundManager.instance.PlaySFX(SoundManager.instance.sfxs[0]);
             //Events.onLostBattleEvent.Invoke();
             battleSystemUI.lostUI.SetActive(true);
+            OnLose();
             ChangeState(lostState);
+            battleSystemUI.sairDaBatalha.SetActive(true);
             return true;
         }
         else if (enemyCharBase.torsoHp <= 0)
         {
+            SoundManager.instance.StopMusic();
+            SoundManager.instance.PlaySFX(SoundManager.instance.sfxs[0]);
             //Events.onWonBattleEvent.Invoke();
             battleSystemUI.wonUI.SetActive(true);
+            OnWon();
             ChangeState(wonState);
+            battleSystemUI.sairDaBatalha.SetActive(true);
             return true;
         }
         else if (enemyCharBase.headHp <= 0 && enemyCharBase.leftArmHp <= 0 && enemyCharBase.rightArmHp <= 0)
         {
+            SoundManager.instance.StopMusic();
+            SoundManager.instance.PlaySFX(SoundManager.instance.sfxs[0]);
             //Events.onWonBattleEvent.Invoke();
             battleSystemUI.wonUI.SetActive(true);
+            OnWon();
             ChangeState(wonState);
+            battleSystemUI.sairDaBatalha.SetActive(true);
             return true;
         }
         return false;
@@ -238,6 +259,25 @@ public class BattleSystem_FSM : FiniteStateMachine
     {
         _currentState = currentState.name;
     }
+
+    public void OnWon()
+    {
+        if (!dataPersistence.unlockedMapPoint_ID_List.Contains(mapIndex + 1))
+        {
+            dataPersistence.unlockedMapPoint_ID_List.Add(mapIndex + 1);
+        }
+        StartCoroutine(WaitToReturnToMap());
+    }
+    public void OnLose()
+    {
+        StartCoroutine(WaitToReturnToMap());
+    }
+    private IEnumerator WaitToReturnToMap()
+    {
+        yield return new WaitForSeconds(3);
+        gameManager.GoToSceneIndex(1);//map
+    }
+
 }
 
 public enum TurnStep

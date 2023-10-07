@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
-    
+    public List<ScriptableObject> allGameAurasList;
     public void NewGame()
     {
         DataPersistenceManager.instance.DeleteJson();

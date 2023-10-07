@@ -24,6 +24,6 @@ MonoBehaviour:
   description: "Causa 30 de dano a aura Alvo inimiga. \"Alisa meu pelo\" - On\xE7a"
   attack: 15
   attackAPCost: 2
-  skillAPCost: 4
+  skillAPCost: 3
   actionPointsPerTurn: 0
   auraPart: 2
